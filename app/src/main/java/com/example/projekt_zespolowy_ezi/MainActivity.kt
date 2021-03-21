@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         /* ANIMACJA TLA */
-        val layout: RelativeLayout = findViewById(R.id.layout_main)
+        val layout: RelativeLayout = findViewById(R.id.main_layout)
         val animationDrawable = layout.background as AnimationDrawable
         animationDrawable.setEnterFadeDuration(4000)
         animationDrawable.setExitFadeDuration(4000)
