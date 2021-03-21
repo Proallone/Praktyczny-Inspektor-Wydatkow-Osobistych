@@ -4,7 +4,7 @@
     <!--GRADIENT DO TLA DOMYSLNEGO APLIKACJI -->
     <gradient
         android:angle="270"
-        android:startColor="#006F80"
-        android:endColor="#CCFFE5"
+        android:startColor="@color/GoblinBrown"
+        android:endColor="@color/AntiqueBrown"
         android:type="linear"/>
 </shape>
