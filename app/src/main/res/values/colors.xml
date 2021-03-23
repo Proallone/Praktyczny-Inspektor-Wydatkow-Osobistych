@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="TeethWhite">#fbfbf4</color>
+    <color name="TeethWhiteDark">#f2f1e9</color>
     <color name="TransparentWhite">#33FFFFFF</color>
     <color name="DarkSeaGreen">#506345</color>
     <color name="OliveKhaki">#948c5a</color>
@@ -15,4 +17,8 @@
     <color name="GreenKhaki">#948c5a</color>
     <color name="GoblinGreen">#85a189</color>
     <color name="GoblinGreen2">#5c7970</color>
+    <color name="PrimaryRed">#ff0000</color>
+    <color name="TransparentPrimaryRed">#33ff0000</color>
+    <color name="SecondaryRed">#800000</color>
+    <color name="TransparentSecondaryRed">#33800000</color>
 </resources>

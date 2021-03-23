@@ -11,8 +11,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:visibility="visible"
-        android:background="@drawable/relative_rounded">
-
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="170sp"
+                android:layout_height="170sp"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher_round" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp"/>
+            <EditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:background="@drawable/relative_rounded"
+                android:autofillHints="@string/user_input"
+                android:singleLine="true"
+                android:gravity="center"
+                android:textColorLink="@android:color/white"
+                android:textCursorDrawable="@android:color/white"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp"/>
+            <TextView
+                android:id="@+id/Server"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:background="@drawable/relative_rounded"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="250sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/relative_rounded"
+                android:text="@string/summary"
+                android:paddingLeft="20sp"/>
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

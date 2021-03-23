@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Projekt zespolowy EZI</string>
+    <string name="app_name">PIWO</string>
+    <string name="user_input">Wprowadź wydatek</string>
+    <string name="summary">Podsumowanie</string>
 </resources>

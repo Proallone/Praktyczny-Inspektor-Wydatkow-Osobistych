@@ -4,7 +4,7 @@
     <!--GRADIENT DO TLA DOMYŚLNEGO APLIKACJI -->
     <gradient
         android:angle="90"
-        android:startColor="@color/TeethWhite"
-        android:endColor="@color/white"
+        android:startColor="@color/SecondaryRed"
+        android:endColor="@color/PrimaryRed"
         android:type="linear"/>
 </shape>
