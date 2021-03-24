@@ -20,7 +20,9 @@
                 android:layout_width="170sp"
                 android:layout_height="170sp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher_round" />
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@mipmap/logo_transparent_foreground" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
