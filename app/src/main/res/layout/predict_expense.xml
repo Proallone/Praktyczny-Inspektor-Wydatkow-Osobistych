@@ -12,5 +12,14 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:visibility="visible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:textColor="@color/white"
+            android:background="@drawable/relative_rounded"
+            android:text="Przewiduj"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
     </RelativeLayout>
 </RelativeLayout>

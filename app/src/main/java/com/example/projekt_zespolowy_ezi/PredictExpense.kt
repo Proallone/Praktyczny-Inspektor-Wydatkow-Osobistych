@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 class PredictExpense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.enter_expense)
+        setContentView(R.layout.predict_expense)
         /* ANIMACJA TLA */
-        val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
+        val layout: RelativeLayout = findViewById(R.id.predict_expense_layout)
         val animationDrawable = layout.background as AnimationDrawable
         animationDrawable.setEnterFadeDuration(4000)
         animationDrawable.setExitFadeDuration(4000)

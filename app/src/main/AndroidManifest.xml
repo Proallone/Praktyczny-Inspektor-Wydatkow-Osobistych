@@ -27,10 +27,12 @@
         </activity>
         <activity android:name=".EnterExpense"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity">
+            </activity>
         <activity android:name=".PredictExpense"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity">
+            </activity>
     </application>
 
 </manifest>

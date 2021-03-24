@@ -13,4 +13,20 @@
         android:layout_centerInParent="true"
         android:visibility="visible">
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:background="@drawable/relative_rounded"
+        android:hint="@string/input"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:autofillHints="@color/white"
+        android:inputType="number"
+        android:singleLine="true"
+        android:textColorHighlight="@color/white"
+        android:textColorLink="@color/white"
+        android:textColor="@color/white"/>
 </RelativeLayout>
