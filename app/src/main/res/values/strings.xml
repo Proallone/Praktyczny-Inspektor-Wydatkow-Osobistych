@@ -6,4 +6,6 @@
     <string name="name_i">Inspektor</string>
     <string name="name_w">Wydatków</string>
     <string name="name_o">Osobistych</string>
+    <string name="input">Wprowadź wydatek</string>
+    <string name="predict">Przewiduj wydatki</string>
 </resources>

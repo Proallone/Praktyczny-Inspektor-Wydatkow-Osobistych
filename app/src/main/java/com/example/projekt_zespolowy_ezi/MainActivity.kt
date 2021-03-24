@@ -1,10 +1,11 @@
 package com.example.projekt_zespolowy_ezi
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.RelativeLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +17,20 @@ class MainActivity : AppCompatActivity() {
         animationDrawable.setEnterFadeDuration(4000)
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
+
+        val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
+        val predictExpenseButton = findViewById<Button>(R.id.predict_expenses)
+
+        enterExpenseButton.setOnClickListener {
+            val enterExpenseIntent = Intent(this, EnterExpense::class.java)
+            startActivity(enterExpenseIntent)
+        }
+        predictExpenseButton.setOnClickListener {
+            val predictExpenseIntent = Intent(this, PredictExpense::class.java)
+            startActivity(predictExpenseIntent)
+        }
+
+
+
     }
 }

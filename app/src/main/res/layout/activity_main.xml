@@ -26,26 +26,57 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
-            <EditText
-                android:id="@+id/input"
+            <Button
+                android:id="@+id/enter_expense"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
+                android:layout_gravity="center"
+                android:text="@string/input"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+            <!--<EditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
                 android:autofillHints="@string/user_input"
-                android:singleLine="true"
+                android:background="@drawable/relative_rounded"
                 android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/white"
                 android:textColorLink="@android:color/white"
                 android:textCursorDrawable="@android:color/white"
-                android:textSize="15sp"
-                android:textColor="@color/white"/>
+                android:textSize="15sp" />
+                -->
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
+            <Button
+                android:id="@+id/predict_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:background="@drawable/relative_rounded"
+                android:layout_gravity="center"
+                android:text="@string/predict"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            <!--
             <TextView
                 android:id="@+id/Server"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"/>
+                android:background="@drawable/relative_rounded"
+                android:text="PROGNOZUJ"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+                -->
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="250sp"/>
