@@ -2,4 +2,8 @@
     <string name="app_name">PIWO</string>
     <string name="user_input">Wprowadź wydatek</string>
     <string name="summary">Podsumowanie</string>
+    <string name="name_p">Praktyczny</string>
+    <string name="name_i">Inspektor</string>
+    <string name="name_w">Wydatków</string>
+    <string name="name_o">Osobistych</string>
 </resources>

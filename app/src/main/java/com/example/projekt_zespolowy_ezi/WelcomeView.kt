@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 //REF https://www.geeksforgeeks.org/how-to-create-an-animated-splash-screen-in-android/
@@ -26,8 +27,16 @@ class WelcomeView : AppCompatActivity() {
         // HERE WE ARE TAKING THE REFERENCE OF OUR IMAGE
         // SO THAT WE CAN PERFORM ANIMATION USING THAT IMAGE
         val backgroundImage: ImageView = findViewById(R.id.WelcomeViewImage)
+        val name_p: TextView = findViewById(R.id.name_p)
+        val name_i: TextView = findViewById(R.id.name_i)
+        val name_w: TextView = findViewById(R.id.name_w)
+        val name_o: TextView = findViewById(R.id.name_o)
         val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide)
         backgroundImage.startAnimation(slideAnimation)
+        name_p.startAnimation(slideAnimation)
+        name_i.startAnimation(slideAnimation)
+        name_w.startAnimation(slideAnimation)
+        name_o.startAnimation(slideAnimation)
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
