@@ -2,7 +2,7 @@
     <string name="app_name">PIWO</string>
     <string name="app_name_bar">PIWO - Twój inspektor budżetu</string>
     <string name="user_input">Wprowadź wydatek</string>
-    <string name="summary">Podsumowanie:702,51zł</string>
+    <string name="summary">Podsumowanie:</string>
     <string name="expense">702,51zł</string>
     <string name="name_p">Praktyczny</string>
     <string name="name_i">Inspektor</string>

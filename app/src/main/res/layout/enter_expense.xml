@@ -12,51 +12,61 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:visibility="visible">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-        <EditText
-            android:id="@+id/enter_expense"
-            android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:background="@drawable/relative_rounded"
-            android:hint="@string/input"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:autofillHints="@color/white"
-            android:layout_gravity="center"
-            android:inputType="number"
-            android:textColorHint="@color/white"
-            android:singleLine="true"
-            android:textColorHighlight="@color/white"
-            android:textColorLink="@color/white"
-            android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/enter_expense"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:autofillHints="@color/white"
+                android:background="@drawable/relative_rounded"
+                android:gravity="center"
+                android:hint="@string/input"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/white"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/white"
+                android:textStyle="bold" />
+
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20sp"/>
+                android:layout_height="20sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
+                android:gravity="center"
                 android:text="Tutaj będzie wybór kategorii wydatku"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20sp"/>
+                android:layout_height="20sp" />
+
             <Button
                 android:id="@+id/save_expense"
                 android:layout_width="100sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
+                android:background="@drawable/relative_rounded"
+                android:onClick="getExpense"
                 android:text="@string/save_expense"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:background="@drawable/relative_rounded"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

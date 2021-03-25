@@ -2,8 +2,10 @@ package com.example.projekt_zespolowy_ezi
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.widget.RelativeLayout
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+
 
 class EnterExpense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,13 +18,17 @@ class EnterExpense : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
     }
-    /*fun getExpense (view: View){
+    fun getExpense(view: View){
         val enterExpense = findViewById<EditText>(R.id.enter_expense)
         val saveExpenseButton = findViewById<Button>(R.id.save_expense)
+        //val summary = findViewById<View>(R.id.summary) as TextView
 
         saveExpenseButton.setOnClickListener {
-            val Expense = findViewById<EditText>(R.id.enter_expense)
-            Toast.makeText(this,"Nie ma gdzie zapisać :(",Toast.LENGTH_LONG).show()
+            /*val actualExpense = findViewById<EditText>(R.id.enter_expense)
+            var actual: Float = actualExpense.text.toString().toFloat()
+            summary.append(actual.toString())
+            Expense.actualExpense = enterExpense.text.toString().toFloat()*/
+            Toast.makeText(this, "Nie ma gdzie zapisać :(", Toast.LENGTH_LONG).show()
         }
-    }*/
+    }
 }

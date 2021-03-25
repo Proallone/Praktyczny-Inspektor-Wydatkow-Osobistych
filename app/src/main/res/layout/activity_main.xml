@@ -36,21 +36,6 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
-
-            <!--<EditText
-                android:id="@+id/input"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:autofillHints="@string/user_input"
-                android:background="@drawable/relative_rounded"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorLink="@android:color/white"
-                android:textCursorDrawable="@android:color/white"
-                android:textSize="15sp" />
-                -->
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
@@ -64,32 +49,21 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
-            <!--
-            <TextView
-                android:id="@+id/Server"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
-                android:text="PROGNOZUJ"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
-                -->
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="250sp"/>
+
             <TextView
+                android:id="@+id/summary"
                 android:layout_width="match_parent"
-                android:layout_height="80sp"
-                android:gravity="center_vertical"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                android:layout_height="74dp"
                 android:background="@drawable/relative_rounded"
+                android:gravity="center_vertical"
+                android:paddingLeft="20sp"
                 android:text="@string/summary"
-                android:paddingLeft="20sp"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
