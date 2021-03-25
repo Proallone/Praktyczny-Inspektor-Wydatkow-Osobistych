@@ -16,4 +16,13 @@ class EnterExpense : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
     }
+    /*fun getExpense (view: View){
+        val enterExpense = findViewById<EditText>(R.id.enter_expense)
+        val saveExpenseButton = findViewById<Button>(R.id.save_expense)
+
+        saveExpenseButton.setOnClickListener {
+            val Expense = findViewById<EditText>(R.id.enter_expense)
+            Toast.makeText(this,"Nie ma gdzie zapisać :(",Toast.LENGTH_LONG).show()
+        }
+    }*/
 }
