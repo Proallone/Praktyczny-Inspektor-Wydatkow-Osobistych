@@ -14,9 +14,9 @@ class EnterExpense : AppCompatActivity() {
         /* ANIMACJA TLA */
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
         val animationDrawable = layout.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(4000)
-        animationDrawable.setExitFadeDuration(4000)
-        animationDrawable.start()
+
+        animateUI(layout)
+
     }
     fun getExpense(view: View){
         val enterExpense = findViewById<EditText>(R.id.enter_expense)
@@ -30,5 +30,12 @@ class EnterExpense : AppCompatActivity() {
             Expense.actualExpense = enterExpense.text.toString().toFloat()*/
             Toast.makeText(this, "Nie ma gdzie zapisać :(", Toast.LENGTH_LONG).show()
         }
+    }
+    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000 ){
+        /*Funkcja odpowiadająca za animację tła*/
+        val animationDrawable = layout.background as AnimationDrawable
+        animationDrawable.setEnterFadeDuration(EnterDuration)
+        animationDrawable.setExitFadeDuration(ExitDuration)
+        animationDrawable.start()
     }
 }

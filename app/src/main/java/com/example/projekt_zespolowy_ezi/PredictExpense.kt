@@ -9,11 +9,16 @@ class PredictExpense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.predict_expense)
-        /* ANIMACJA TLA */
         val layout: RelativeLayout = findViewById(R.id.predict_expense_layout)
+
+        animateUI(layout)
+
+    }
+    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000 ){
+        /*Funkcja odpowiadająca za animację tła*/
         val animationDrawable = layout.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(4000)
-        animationDrawable.setExitFadeDuration(4000)
+        animationDrawable.setEnterFadeDuration(EnterDuration)
+        animationDrawable.setExitFadeDuration(ExitDuration)
         animationDrawable.start()
     }
 }
