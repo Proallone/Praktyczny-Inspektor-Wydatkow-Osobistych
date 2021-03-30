@@ -11,7 +11,9 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         val CREATE_EXPENSES_TABLE = ("CREATE TABLE "+
                 TABLE_EXPENSES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"+
-                COLUMN_EXPENSEVAL + " REAL,"+ COLUMN_EXPENSEDATE + " TEXT"+ ")")
+                COLUMN_EXPENSEVAL + " REAL,"+
+                COLUM_EXPENSECAT + " TEXT," +
+                COLUMN_EXPENSEDATE + " TEXT"+ ")")
         db.execSQL(CREATE_EXPENSES_TABLE)
 
     }
@@ -25,6 +27,7 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
     fun addExpense(expense: UserExpense){
         val values = ContentValues()
         values.put(COLUMN_EXPENSEVAL, expense.value)
+        values.put(COLUM_EXPENSECAT, expense.category)
         values.put(COLUMN_EXPENSEDATE, expense.date)
 
         val db = this.writableDatabase
@@ -49,7 +52,7 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
             val id = Integer.parseInt(cursor.getString(0))
             val value = cursor.getFloat(1)
             val date = cursor.getString(2)
-            expense = UserExpense(id, value, date)
+            expense = UserExpense(id, value, null, date)
             cursor.close()
         }
 
@@ -64,7 +67,9 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         val TABLE_EXPENSES = "expenses"
 
         val COLUMN_ID = "_id"
-        val COLUMN_EXPENSEDATE = "date"
         val COLUMN_EXPENSEVAL = "value"
+        val COLUM_EXPENSECAT = "category"
+        val COLUMN_EXPENSEDATE = "date"
+
     }
 }

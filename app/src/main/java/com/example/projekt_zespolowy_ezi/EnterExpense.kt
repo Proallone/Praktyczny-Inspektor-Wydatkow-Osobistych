@@ -18,6 +18,27 @@ class EnterExpense : AppCompatActivity() {
 
         animateUI(layout)
 
+        val expenseCategories = resources.getStringArray(R.array.expense_category_array)
+
+        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
+
+        if (categorySpinner != null){
+            val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, expenseCategories)
+            categorySpinner.adapter = adapter
+        }
+
+       categorySpinner.onItemSelectedListener = object :
+               AdapterView.OnItemSelectedListener {
+           override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+               Toast.makeText(this@EnterExpense,
+                       getString(R.string.selected_category) + " " +
+                               "" + expenseCategories[position], Toast.LENGTH_SHORT).show()
+           }
+
+           override fun onNothingSelected(parent: AdapterView<*>) {
+               // write code to perform some action
+           }
+       }
     }
     fun newExpense(view: View){
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
@@ -29,7 +50,7 @@ class EnterExpense : AppCompatActivity() {
         val currentDateTime = LocalDateTime.now()
         val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
 
-        val expense = UserExpense(expenseVal,date)
+        val expense = UserExpense(expenseVal,null,date)
 
         dbHandler.addExpense(expense)
 
@@ -39,10 +60,10 @@ class EnterExpense : AppCompatActivity() {
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
 
         val product = dbHandler.findExpense(
-            expenseI.text.toString())
+            expenseDate.text.toString())
 
         if (product != null) {
-            expense.text = product.id.toString()
+            productID.text = product.id.toString()
 
             productQuantity.setText(
                 product.quantity.toString())

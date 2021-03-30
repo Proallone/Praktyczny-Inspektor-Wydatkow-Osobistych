@@ -39,15 +39,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
 
-            <TextView
+            <Spinner
+                android:id="@+id/expense_category_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
                 android:gravity="center"
-                android:text="Tutaj będzie wybór kategorii wydatku"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textAlignment="center"
+                />
 
             <Space
                 android:layout_width="match_parent"

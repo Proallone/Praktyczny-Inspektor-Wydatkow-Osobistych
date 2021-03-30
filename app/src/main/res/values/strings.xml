@@ -11,4 +11,13 @@
     <string name="input">Wprowadź wydatek</string>
     <string name="predict">Przewiduj wydatki</string>
     <string name="save_expense">Zapisz</string>
+    <string name="selected_category">Wybrana kategoria</string>
+
+    <string-array name="expense_category_array">
+        <item>Jedzenie</item>
+        <item>Rozrywka</item>
+        <item>Ubrania</item>
+        <item>Piwo</item>
+        <item>Zaginione ECTS</item>
+    </string-array>
 </resources>
