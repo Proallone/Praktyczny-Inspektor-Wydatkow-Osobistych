@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
         val predictExpenseButton = findViewById<Button>(R.id.predict_expenses)
 
+
         enterExpenseButton.setOnClickListener {
             enterActualExpense()
         }
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(ExitDuration)
         animationDrawable.start()
     }
-    /*inner class uiUpdate() : AsyncTask<Void, Void, String>() {
+  /*  inner class uiUpdate() : AsyncTask<Void, Void, String>() {
         override fun doInBackground(vararg params: Void?): String? {
             // ...
             return null

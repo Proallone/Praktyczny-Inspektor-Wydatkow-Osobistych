@@ -48,9 +48,6 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-            <ExpandableListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <Space
                 android:layout_width="match_parent"
@@ -62,7 +59,7 @@
                 android:layout_height="60sp"
                 android:layout_gravity="center"
                 android:background="@drawable/relative_rounded"
-                android:onClick="getExpense"
+                android:onClick="newExpense"
                 android:text="@string/save_expense"
                 android:textColor="@color/white"
                 android:textSize="20sp"

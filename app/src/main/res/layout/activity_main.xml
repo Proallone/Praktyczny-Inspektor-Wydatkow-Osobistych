@@ -52,7 +52,15 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="250sp"/>
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/relative_rounded"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="WCZYTAJ"
+                android:onClick="getExpense"/>
             <TextView
                 android:id="@+id/summary"
                 android:layout_width="match_parent"

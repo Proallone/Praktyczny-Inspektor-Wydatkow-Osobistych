@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class EnterExpense : AppCompatActivity() {
@@ -13,24 +15,41 @@ class EnterExpense : AppCompatActivity() {
         setContentView(R.layout.enter_expense)
         /* ANIMACJA TLA */
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
-        val animationDrawable = layout.background as AnimationDrawable
 
         animateUI(layout)
 
     }
-    fun getExpense(view: View){
-        val enterExpense = findViewById<EditText>(R.id.enter_expense)
-        val saveExpenseButton = findViewById<Button>(R.id.save_expense)
-        //val summary = findViewById<View>(R.id.summary) as TextView
+    fun newExpense(view: View){
+        val dbHandler = ExpenseDBHandler(this, null, null, 1)
 
-        saveExpenseButton.setOnClickListener {
-            /*val actualExpense = findViewById<EditText>(R.id.enter_expense)
-            var actual: Float = actualExpense.text.toString().toFloat()
-            summary.append(actual.toString())
-            Expense.actualExpense = enterExpense.text.toString().toFloat()*/
-            Toast.makeText(this, "Nie ma gdzie zapisać :(", Toast.LENGTH_LONG).show()
-        }
+        val enterExpense = findViewById<EditText>(R.id.enter_expense)
+
+        val expenseVal = enterExpense.text.toString().toFloat()
+
+        val currentDateTime = LocalDateTime.now()
+        val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
+
+        val expense = UserExpense(expenseVal,date)
+
+        dbHandler.addExpense(expense)
+
     }
+
+    /*fun lookupProduct(view: View) {
+        val dbHandler = ExpenseDBHandler(this, null, null, 1)
+
+        val product = dbHandler.findExpense(
+            expenseI.text.toString())
+
+        if (product != null) {
+            expense.text = product.id.toString()
+
+            productQuantity.setText(
+                product.quantity.toString())
+        } else {
+            productID.text = "No Match Found"
+        }
+    } */
     private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000 ){
         /*Funkcja odpowiadająca za animację tła*/
         val animationDrawable = layout.background as AnimationDrawable
@@ -39,3 +58,4 @@ class EnterExpense : AppCompatActivity() {
         animationDrawable.start()
     }
 }
+
