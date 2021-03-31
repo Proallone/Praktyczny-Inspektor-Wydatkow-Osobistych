@@ -51,7 +51,7 @@
                 android:textSize="15sp"/>
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="250sp"/>
+                android:layout_height="230sp"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,12 +59,14 @@
                 android:background="@drawable/relative_rounded"
                 android:textSize="15sp"
                 android:textColor="@color/white"
-                android:text="WCZYTAJ"
-                android:onClick="getExpense"/>
+                android:text="WCZYTAJ" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"/>
             <TextView
                 android:id="@+id/summary"
                 android:layout_width="match_parent"
-                android:layout_height="74dp"
+                android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
                 android:gravity="center_vertical"
                 android:paddingLeft="20sp"

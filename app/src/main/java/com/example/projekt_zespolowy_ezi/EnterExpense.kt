@@ -10,17 +10,18 @@ import java.time.format.DateTimeFormatter
 
 
 class EnterExpense : AppCompatActivity() {
+
+    lateinit var  selectedCat: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.enter_expense)
-        /* ANIMACJA TLA */
+
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
-
-        animateUI(layout)
-
+        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
         val expenseCategories = resources.getStringArray(R.array.expense_category_array)
 
-        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
+        animateUI(layout)
 
         if (categorySpinner != null){
             val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, expenseCategories)
@@ -30,6 +31,7 @@ class EnterExpense : AppCompatActivity() {
        categorySpinner.onItemSelectedListener = object :
                AdapterView.OnItemSelectedListener {
            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+               selectedCat = expenseCategories[position]
                Toast.makeText(this@EnterExpense,
                        getString(R.string.selected_category) + " " +
                                "" + expenseCategories[position], Toast.LENGTH_SHORT).show()
@@ -45,15 +47,20 @@ class EnterExpense : AppCompatActivity() {
 
         val enterExpense = findViewById<EditText>(R.id.enter_expense)
 
-        val expenseVal = enterExpense.text.toString().toFloat()
+        if(enterExpense.text.isNotEmpty() && enterExpense.text.toString().toFloat() > 0) {
 
-        val currentDateTime = LocalDateTime.now()
-        val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
-
-        val expense = UserExpense(expenseVal,null,date)
-
-        dbHandler.addExpense(expense)
-
+            val expenseVal = enterExpense.text.toString().toFloat()
+            val currentDateTime = LocalDateTime.now()
+            val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
+            val expense = UserExpense(expenseVal, selectedCat, date)
+            dbHandler.addExpense(expense)
+            enterExpense.text.clear()
+            //val expenseRounded = String.format("%0.2f", expenseVal)
+            Toast.makeText(this, "Zapisano wydatek " + expenseVal + "zł", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(this, "Wprowadź poprawną wartość", Toast.LENGTH_SHORT).show()
+            enterExpense.text.clear()
+        }
     }
 
     /*fun lookupProduct(view: View) {
