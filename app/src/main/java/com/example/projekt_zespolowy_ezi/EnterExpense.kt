@@ -1,5 +1,7 @@
 package com.example.projekt_zespolowy_ezi
 
+
+
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
@@ -24,7 +26,8 @@ class EnterExpense : AppCompatActivity() {
         animateUI(layout)
 
         if (categorySpinner != null){
-            val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item, expenseCategories)
+            val adapter = ArrayAdapter(this, R.layout.spinner_selected_layout, expenseCategories)
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
             categorySpinner.adapter = adapter
         }
 
@@ -49,7 +52,7 @@ class EnterExpense : AppCompatActivity() {
 
         if(enterExpense.text.isNotEmpty() && enterExpense.text.toString().toFloat() > 0) {
 
-            val expenseVal = enterExpense.text.toString().toFloat()
+            val expenseVal = enterExpense.text.toString().format("%.2f")
             val currentDateTime = LocalDateTime.now()
             val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
             val expense = UserExpense(expenseVal, selectedCat, date)
@@ -78,7 +81,7 @@ class EnterExpense : AppCompatActivity() {
             productID.text = "No Match Found"
         }
     } */
-    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000 ){
+    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000){
         /*Funkcja odpowiadająca za animację tła*/
         val animationDrawable = layout.background as AnimationDrawable
         animationDrawable.setEnterFadeDuration(EnterDuration)

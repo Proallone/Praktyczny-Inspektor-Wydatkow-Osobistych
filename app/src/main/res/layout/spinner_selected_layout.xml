@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color
+ -->
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="@color/white"
+    android:padding="5dip"
+    android:textStyle="bold"
+    android:textAlignment="center"/>

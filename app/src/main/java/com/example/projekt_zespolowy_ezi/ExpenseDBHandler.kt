@@ -4,14 +4,13 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.view.View
 
 class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.CursorFactory?,version: Int):SQLiteOpenHelper(context,DATABASE_NAME, factory, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_EXPENSES_TABLE = ("CREATE TABLE "+
                 TABLE_EXPENSES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY,"+
-                COLUMN_EXPENSEVAL + " REAL,"+
+                COLUMN_EXPENSEVAL + " TEXT,"+
                 COLUM_EXPENSECAT + " TEXT," +
                 COLUMN_EXPENSEDATE + " TEXT"+ ")")
         db.execSQL(CREATE_EXPENSES_TABLE)
@@ -50,7 +49,7 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
             cursor.moveToFirst()
 
             val id = Integer.parseInt(cursor.getString(0))
-            val value = cursor.getFloat(1)
+            val value = cursor.getString(1)
             val date = cursor.getString(2)
             expense = UserExpense(id, value, null, date)
             cursor.close()

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RelativeLayout
-import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +28,12 @@ class MainActivity : AppCompatActivity() {
             saveActualExpense()
         }
     }
-    fun enterActualExpense(){
+    private fun enterActualExpense(){
         /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
         val enterExpenseIntent = Intent(this, EnterExpense::class.java)
         startActivity(enterExpenseIntent)
     }
-    fun saveActualExpense(){
+    private fun saveActualExpense(){
         /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
         val predictExpenseIntent = Intent(this, PredictExpense::class.java)
         startActivity(predictExpenseIntent)
