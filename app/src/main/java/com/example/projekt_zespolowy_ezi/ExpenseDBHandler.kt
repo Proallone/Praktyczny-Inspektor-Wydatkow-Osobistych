@@ -2,6 +2,8 @@ package com.example.projekt_zespolowy_ezi
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -35,28 +37,34 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         db.close()
     }
 
-    fun findExpense(expenseID: Int ): UserExpense? {
-        val query =
-            "SELECT * FROM $TABLE_EXPENSES WHERE $COLUMN_ID =  \"$expenseID\""
+    fun findExpense():List<UserExpense> {
+        /* https://www.javatpoint.com/kotlin-android-sqlite-tutorial */
+        val expList:ArrayList<UserExpense> = ArrayList<UserExpense>()
+        val selectQuery = "SELECT * FROM $TABLE_EXPENSES"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery(selectQuery, null)
 
-        val db = this.writableDatabase
-
-        val cursor = db.rawQuery(query, null)
-
-        var expense: UserExpense? = null
-
-        if (cursor.moveToFirst()) {
-            cursor.moveToFirst()
-
-            val id = Integer.parseInt(cursor.getString(0))
-            val value = cursor.getString(1)
-            val date = cursor.getString(2)
-            expense = UserExpense(id, value, null, date)
-            cursor.close()
+        }catch (e: SQLException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
         }
-
-        db.close()
-        return expense
+        var expenseId: Int
+        var expenseVal: String
+        var expenseCat: String
+        var expenseDate: String
+        if(cursor.moveToFirst()){
+            do {
+                expenseId=cursor.getInt(cursor.getColumnIndex("COLUMN_ID"))
+                expenseVal=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSEVAL"))
+                expenseCat=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSECAT"))
+                expenseDate=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSEDATE"))
+                val exp = UserExpense(id =  expenseId, value = expenseVal, category = expenseCat, date = expenseDate )
+                expList.add(exp)
+            }while (cursor.moveToNext())
+        }
+        return expList
     }
 
     companion object {

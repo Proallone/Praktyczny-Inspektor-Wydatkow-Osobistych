@@ -2,11 +2,15 @@ package com.example.projekt_zespolowy_ezi
 
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RelativeLayout
+
+/**
+ * Plik źródłowy głównej aktywności aplikacji, odpowiada za prawidłowe przechodzenie pomiędzy dodatkowymi
+ * aktywnościami.
+ */
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
         val predictExpenseButton = findViewById<Button>(R.id.predict_expenses)
-
 
         enterExpenseButton.setOnClickListener {
             enterActualExpense()
@@ -45,20 +48,4 @@ class MainActivity : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(ExitDuration)
         animationDrawable.start()
     }
-  /*  inner class uiUpdate() : AsyncTask<Void, Void, String>() {
-        override fun doInBackground(vararg params: Void?): String? {
-            // ...
-            return null
-        }
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-            // ...
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-
-        }
-    }*/
 }
