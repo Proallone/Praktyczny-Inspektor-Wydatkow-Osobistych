@@ -19,9 +19,9 @@ class ExpenseListAdapter(private val context: Activity, private val id: Array<St
         val dateText = rowView.findViewById(R.id.expenseViewDate) as TextView
 
         idText.text = "Id: ${id[position]}"
-        valueText.text = "Name: ${value[position]}"
-        categoryText.text = "Name: ${category[position]}"
-        dateText.text = "Email: ${date[position]}"
+        valueText.text = "Value: ${value[position]}"
+        categoryText.text = "Category: ${category[position]}"
+        dateText.text = "Date: ${date[position]}"
         return rowView
     }
 }

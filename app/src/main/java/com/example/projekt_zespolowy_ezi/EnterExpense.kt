@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import org.w3c.dom.Text
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -40,9 +41,12 @@ class EnterExpense : AppCompatActivity() {
                AdapterView.OnItemSelectedListener {
            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                selectedCat = expenseCategories[position]
+               /*
                Toast.makeText(this@EnterExpense,
                        getString(R.string.selected_category) + " " +
                                "" + expenseCategories[position], Toast.LENGTH_SHORT).show()
+
+                */
            }
 
            override fun onNothingSelected(parent: AdapterView<*>) {
@@ -60,7 +64,8 @@ class EnterExpense : AppCompatActivity() {
             val expenseVal = enterExpense.text.toString()
             /*TIME https://grokonez.com/kotlin/kotlin-get-current-datetime */
             val currentDateTime = LocalDateTime.now()
-            val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
+            //val date = currentDateTime.format(DateTimeFormatter.ISO_DATE).toString()
+            val date = currentDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
             val expense = UserExpense(expenseVal, selectedCat, date)
             dbHandler.addExpense(expense)
             enterExpense.text.clear()
@@ -74,6 +79,7 @@ class EnterExpense : AppCompatActivity() {
 
     fun viewExpenses(view: View) {
         val expensesList = findViewById<ListView>(R.id.expenses_list)
+        //val summaryView = findViewById<TextView>(R.id.summary)
 
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
         val expenses: List<UserExpense> = dbHandler.findExpense()
@@ -82,6 +88,7 @@ class EnterExpense : AppCompatActivity() {
         val expArrayVal = Array<String>(expenses.size){"null"}
         val expArrayCat = Array<String>(expenses.size){"null"}
         val expArrayDate = Array<String>(expenses.size){"null"}
+
 
         var index = 0
 
@@ -94,6 +101,17 @@ class EnterExpense : AppCompatActivity() {
         }
         val expListAdapter = ExpenseListAdapter(this,expArrayID,expArrayVal,expArrayCat,expArrayDate)
         expensesList.adapter = expListAdapter
+
+        val expSumVal = expArrayVal.map { it.toFloat() }
+        var sumExp = 0F
+
+        expSumVal.forEach{ it->
+            sumExp+=it
+        }
+
+        //Toast.makeText(this, sumExp.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this,expensesList.toString(),Toast.LENGTH_LONG).show()
+
     }
     private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000){
         /*Funkcja odpowiadająca za animację tła*/

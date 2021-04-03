@@ -22,7 +22,6 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS" +  TABLE_EXPENSES)
         onCreate(db)
-
     }
 
     fun addExpense(expense: UserExpense){
@@ -35,6 +34,15 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
 
         db.insert(TABLE_EXPENSES, null, values)
         db.close()
+    }
+
+    fun removeExpense(exp: UserExpense):Int{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_ID,exp.id)
+        val success = db.delete(TABLE_EXPENSES,"_id="+exp.id,null)
+        db.close()
+        return success
     }
 
     fun findExpense():List<UserExpense> {
@@ -56,10 +64,10 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         var expenseDate: String
         if(cursor.moveToFirst()){
             do {
-                expenseId=cursor.getInt(cursor.getColumnIndex("COLUMN_ID"))
-                expenseVal=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSEVAL"))
-                expenseCat=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSECAT"))
-                expenseDate=cursor.getString(cursor.getColumnIndex("COLUMN_EXPENSEDATE"))
+                expenseId=cursor.getInt(0)
+                expenseVal=cursor.getString(1)
+                expenseCat=cursor.getString(2)
+                expenseDate=cursor.getString(3)
                 val exp = UserExpense(id =  expenseId, value = expenseVal, category = expenseCat, date = expenseDate )
                 expList.add(exp)
             }while (cursor.moveToNext())
