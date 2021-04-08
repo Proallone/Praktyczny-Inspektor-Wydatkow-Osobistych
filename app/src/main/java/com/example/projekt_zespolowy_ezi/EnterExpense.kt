@@ -2,12 +2,10 @@ package com.example.projekt_zespolowy_ezi
 
 
 
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -18,7 +16,7 @@ class EnterExpense : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.enter_expense)
+        setContentView(R.layout.activity_enter_expense)
 
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
         val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
@@ -26,10 +24,8 @@ class EnterExpense : AppCompatActivity() {
 
         //val viewExpenseButton = findViewById<Button>(R.id.viewdata)
 
-
-
-
-        animateUI(layout)
+        BackgroundAnimation.animateUI(layout)
+        viewExpenses(layout)
 
         if (categorySpinner != null){
             val adapter = ArrayAdapter(this, R.layout.spinner_selected_layout, expenseCategories)
@@ -78,8 +74,8 @@ class EnterExpense : AppCompatActivity() {
     }
 
     fun viewExpenses(view: View) {
+
         val expensesList = findViewById<ListView>(R.id.expenses_list)
-        //val summaryView = findViewById<TextView>(R.id.summary)
 
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
         val expenses: List<UserExpense> = dbHandler.findExpense()
@@ -109,16 +105,10 @@ class EnterExpense : AppCompatActivity() {
             sumExp+=it
         }
 
+        SummaryExpenses.summary = sumExp
         //Toast.makeText(this, sumExp.toString(), Toast.LENGTH_SHORT).show()
         //Toast.makeText(this,expensesList.toString(),Toast.LENGTH_LONG).show()
 
-    }
-    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000){
-        /*Funkcja odpowiadająca za animację tła*/
-        val animationDrawable = layout.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(EnterDuration)
-        animationDrawable.setExitFadeDuration(ExitDuration)
-        animationDrawable.start()
     }
 }
 

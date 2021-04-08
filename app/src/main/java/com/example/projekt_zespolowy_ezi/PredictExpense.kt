@@ -11,14 +11,7 @@ class PredictExpense : AppCompatActivity() {
         setContentView(R.layout.predict_expense)
         val layout: RelativeLayout = findViewById(R.id.predict_expense_layout)
 
-        animateUI(layout)
+        BackgroundAnimation.animateUI(layout)
 
-    }
-    private fun animateUI(layout: RelativeLayout, EnterDuration: Int = 4000, ExitDuration: Int = 4000 ){
-        /*Funkcja odpowiadająca za animację tła*/
-        val animationDrawable = layout.background as AnimationDrawable
-        animationDrawable.setEnterFadeDuration(EnterDuration)
-        animationDrawable.setExitFadeDuration(ExitDuration)
-        animationDrawable.start()
     }
 }

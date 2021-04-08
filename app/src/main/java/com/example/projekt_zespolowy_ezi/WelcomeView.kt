@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -22,7 +23,9 @@ class WelcomeView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_view)
+        val layout : RelativeLayout = findViewById(R.id.activity_welcome_layout)
 
+        //BackgroundAnimation.animateUI(layout)
         welcomeAnimation()
 
         // we used the postDelayed(Runnable, time) method

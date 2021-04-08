@@ -7,6 +7,12 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+/**
+ * Data Base Handler - klasa odpowiadająca za implementacje funkcji typu CRUD (Create, Read, Update, Delete) bazy danych
+ * Wykorzystana baza danych to standard SQLite. Poniższe funkcje definiują sposób komunikacji z zapisaną na urząrzeniu bazą
+ * oferując możliwości jej stworzenia, dodawania elementów oraz wyświetlania
+ */
+
 class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.CursorFactory?,version: Int):SQLiteOpenHelper(context,DATABASE_NAME, factory, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_EXPENSES_TABLE = ("CREATE TABLE "+
