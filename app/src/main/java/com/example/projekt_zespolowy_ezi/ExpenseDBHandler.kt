@@ -2,8 +2,16 @@ package com.example.projekt_zespolowy_ezi
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+
+/**
+ * Data Base Handler - klasa odpowiadająca za implementacje funkcji typu CRUD (Create, Read, Update, Delete) bazy danych
+ * Wykorzystana baza danych to standard SQLite. Poniższe funkcje definiują sposób komunikacji z zapisaną na urząrzeniu bazą
+ * oferując możliwości jej stworzenia, dodawania elementów oraz wyświetlania
+ */
 
 class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.CursorFactory?,version: Int):SQLiteOpenHelper(context,DATABASE_NAME, factory, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
@@ -20,7 +28,6 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS" +  TABLE_EXPENSES)
         onCreate(db)
-
     }
 
     fun addExpense(expense: UserExpense){
@@ -35,28 +42,43 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         db.close()
     }
 
-    fun findExpense(expenseID: Int ): UserExpense? {
-        val query =
-            "SELECT * FROM $TABLE_EXPENSES WHERE $COLUMN_ID =  \"$expenseID\""
-
+    fun removeExpense(exp: UserExpense):Int{
         val db = this.writableDatabase
-
-        val cursor = db.rawQuery(query, null)
-
-        var expense: UserExpense? = null
-
-        if (cursor.moveToFirst()) {
-            cursor.moveToFirst()
-
-            val id = Integer.parseInt(cursor.getString(0))
-            val value = cursor.getString(1)
-            val date = cursor.getString(2)
-            expense = UserExpense(id, value, null, date)
-            cursor.close()
-        }
-
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_ID,exp.id)
+        val success = db.delete(TABLE_EXPENSES,"_id="+exp.id,null)
         db.close()
-        return expense
+        return success
+    }
+
+    fun findExpense():List<UserExpense> {
+        /* https://www.javatpoint.com/kotlin-android-sqlite-tutorial */
+        val expList:ArrayList<UserExpense> = ArrayList<UserExpense>()
+        val selectQuery = "SELECT * FROM $TABLE_EXPENSES"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+
+        }catch (e: SQLException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var expenseId: Int
+        var expenseVal: String
+        var expenseCat: String
+        var expenseDate: String
+        if(cursor.moveToFirst()){
+            do {
+                expenseId=cursor.getInt(0)
+                expenseVal=cursor.getString(1)
+                expenseCat=cursor.getString(2)
+                expenseDate=cursor.getString(3)
+                val exp = UserExpense(id =  expenseId, value = expenseVal, category = expenseCat, date = expenseDate )
+                expList.add(exp)
+            }while (cursor.moveToNext())
+        }
+        return expList
     }
 
     companion object {

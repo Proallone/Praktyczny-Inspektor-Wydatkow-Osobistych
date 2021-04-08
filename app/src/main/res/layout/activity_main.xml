@@ -17,8 +17,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="170sp"
-                android:layout_height="170sp"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
                 android:layout_gravity="center"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
@@ -26,8 +26,51 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/relative_rounded">
+            <TextView
+                android:id="@+id/summary_text"
+                android:layout_width="200sp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="20sp"
+                android:text="@string/summary"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/summary_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:padding="20sp"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:orientation="vertical">
+                <ListView
+                    android:id="@+id/expenses_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"/>
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
             <Button
                 android:id="@+id/enter_expense"
+                style="@style/RedTheme"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
@@ -50,30 +93,19 @@
                 android:textStyle="bold"
                 android:textSize="15sp"/>
             <Space
-                android:layout_width="match_parent"
-                android:layout_height="230sp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="20sp"/>
+
             <Button
+                android:id="@+id/viewdata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/relative_rounded"
                 android:textSize="15sp"
                 android:textColor="@color/white"
-                android:text="WCZYTAJ" />
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="20sp"/>
-            <TextView
-                android:id="@+id/summary"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
-                android:gravity="center_vertical"
-                android:paddingLeft="20sp"
-                android:text="@string/summary"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="WCZYTAJ"
+                />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

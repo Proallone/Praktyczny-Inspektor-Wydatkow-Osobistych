@@ -12,12 +12,10 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:visibility="visible">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <EditText
                 android:id="@+id/enter_expense"
                 android:layout_width="match_parent"
@@ -34,11 +32,9 @@
                 android:textColorHint="@drawable/input_hint_hide"
                 android:textColorLink="@color/white"
                 android:textStyle="bold" />
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
-
             <Spinner
                 android:id="@+id/expense_category_spinner"
                 android:layout_width="match_parent"
@@ -46,11 +42,9 @@
                 android:background="@drawable/relative_rounded"
                 android:gravity="center"
                 android:textAlignment="center"/>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
-
             <Button
                 android:id="@+id/save_expense"
                 android:layout_width="100sp"
@@ -62,6 +56,28 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+                <ListView
+                    android:id="@+id/expenses_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20sp"/>
+            <Button
+                android:id="@+id/viewdata"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:background="@drawable/relative_rounded"
+                android:onClick="viewExpenses"
+                android:text="WCZYTAJ"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- cała paleta tutaj
+     https://www.color-hex.com/color-palette/107250-->
+    <color name="PastelleBlack">#080518</color>
+    <color name="PastelleLightBlue">#2e94fa</color>
+    <color name="PastelleDeepBlue">#523af5</color>
+    <color name="PastelleDeepOrange">#f5a52c</color>
+    <color name="PastelleLightOrange">#f7b756</color>
+    <color name="PastelleWhite">#fdfcfc</color>
+</resources>
