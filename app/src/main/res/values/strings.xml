@@ -14,26 +14,12 @@
     <string name="selected_category">Wybrana kategoria</string>
 
     <string-array name="expense_category_array">
-        <item>Jedzenie</item>
+        <item>Art. spożywcze</item>
+        <item>Chemia</item>
+        <item>Elektronika</item>
         <item>Rozrywka</item>
-        <item>Ubrania</item>
-        <item>Piwo</item>
-        <item>Zaginione ECTS</item>
-        <item>Jedzenie</item>
-        <item>Rozrywka</item>
-        <item>Ubrania</item>
-        <item>Piwo</item>
-        <item>Zaginione ECTS</item>
-        <item>Jedzenie</item>
-        <item>Rozrywka</item>
-        <item>Ubrania</item>
-        <item>Piwo</item>
-        <item>Zaginione ECTS</item>
-        <item>Jedzenie</item>
-        <item>Rozrywka</item>
-        <item>Ubrania</item>
-        <item>Piwo</item>
-        <item>Zaginione ECTS</item>
+        <item>Usługi</item>
+        <item>Wydatki internetowe</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -83,12 +83,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="10sp"/>
             <Button
-                android:id="@+id/predict_expenses"
+                android:id="@+id/enter_category"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
                 android:layout_gravity="center"
-                android:text="@string/predict"
+                android:text="Wprowadź kategorię"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"/>

@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
         summaryView.text = SummaryExpenses.summary.toString()
 
         val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
-        val predictExpenseButton = findViewById<Button>(R.id.predict_expenses)
+        val enterCategoryButton = findViewById<Button>(R.id.enter_category)
 
         enterExpenseButton.setOnClickListener {
             enterActualExpense()
         }
-        predictExpenseButton.setOnClickListener {
-            saveActualExpense()
+        enterCategoryButton.setOnClickListener {
+            enterNewCategory()
         }
     }
     private fun enterActualExpense(){
@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         val enterExpenseIntent = Intent(this, EnterExpense::class.java)
         startActivity(enterExpenseIntent)
     }
-    private fun saveActualExpense(){
+    private fun enterNewCategory(){
         /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
-        val predictExpenseIntent = Intent(this, PredictExpense::class.java)
-        startActivity(predictExpenseIntent)
+        val enterCategoryIntent = Intent(this, EnterCategory::class.java)
+        startActivity(enterCategoryIntent)
     }
 }
