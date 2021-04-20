@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/enter_expense_layout"
+    android:id="@+id/enter_category_layout"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,15 +17,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <EditText
-                android:id="@+id/enter_expense"
+                android:id="@+id/enter_category"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
                 android:autofillHints="@color/white"
                 android:background="@drawable/relative_rounded"
                 android:gravity="center"
-                android:hint="@string/input"
-                android:inputType="numberDecimal"
+                android:hint="Wprowadź kategorię"
+                android:inputType="text"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/white"
@@ -35,23 +35,16 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
-            <Spinner
-                android:id="@+id/expense_category_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
-                android:gravity="center"
-                android:textAlignment="center"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
             <Button
-                android:id="@+id/save_expense"
+                android:id="@+id/save_category"
                 android:layout_width="100sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
                 android:background="@drawable/relative_rounded"
-                android:onClick="newExpense"
+                android:onClick="newCategory"
                 android:text="@string/save_expense"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -61,23 +54,35 @@
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
                 <ListView
-                    android:id="@+id/expenses_list"
+                    android:id="@+id/category_list"
                     android:layout_width="match_parent"
                     android:layout_height="400dp" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20sp"/>
-            <Button
-                android:id="@+id/viewdata"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:background="@drawable/relative_rounded"
-                android:onClick="viewExpenses"
-                android:text="WCZYTAJ"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20sp"/>
+                <Button
+                    android:id="@+id/viewdata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/relative_rounded"
+                    android:onClick="viewCategories"
+                    android:text="WCZYTAJ"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20sp"/>
+                <Button
+                    android:id="@+id/removedata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/relative_rounded"
+                    android:onClick="viewCategories"
+                    android:text="Usuń"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
