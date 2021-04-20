@@ -32,7 +32,6 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
 
         db.execSQL(CREATE_EXPENSES_TABLE)
         db.execSQL(CREATE_CATEGORY_TABLE)
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -77,7 +76,7 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_ID,exp.id)
-        val success = db.delete(TABLE_EXPENSES,"_id="+exp.id,null)
+        val success = db.delete(TABLE_EXPENSES,"id="+exp.id,null)
         db.close()
         return success
     }
@@ -86,12 +85,12 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_CAT_ID,cat.id)
-        val success = db.delete(TABLE_CATEGORY,"_id="+cat.id,null)
+        val success = db.delete(TABLE_CATEGORY,"id="+cat.id,null)
         db.close()
         return success
     }
 
-    fun findExpense():List<UserExpense> {
+    fun readAllExpenses():List<UserExpense> {
         /* https://www.javatpoint.com/kotlin-android-sqlite-tutorial */
         val expList:ArrayList<UserExpense> = ArrayList<UserExpense>()
         val selectQuery = "SELECT * FROM $TABLE_EXPENSES"
@@ -121,7 +120,7 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         return expList
     }
 
-    fun findCategory():List<UserCategory> {
+    fun readAllCategory():List<UserCategory> {
         /* https://www.javatpoint.com/kotlin-android-sqlite-tutorial */
         val catList:ArrayList<UserCategory> = ArrayList()
         val selectQuery = "SELECT * FROM $TABLE_CATEGORY"
@@ -153,13 +152,13 @@ class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.C
         private val DATABASE_NAME = "expensesDB.sqlite"
 
         val TABLE_EXPENSES = "expenses"
-        val COLUMN_ID = "_id"
+        val COLUMN_ID = "id"
         val COLUMN_EXPENSEVAL = "value"
         val COLUMN_EXPENSECAT = "category"
         val COLUMN_EXPENSEDATE = "date"
 
         val TABLE_CATEGORY = "categories"
-        val COLUMN_CAT_ID = "_id"
+        val COLUMN_CAT_ID = "id"
         val COLUMN_CAT_TYPE = "category"
 
     }

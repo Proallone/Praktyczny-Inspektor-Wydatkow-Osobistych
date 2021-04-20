@@ -31,6 +31,10 @@ class EnterExpense : AppCompatActivity() {
         //Toast.makeText(this, initialCat.toString(), Toast.LENGTH_SHORT).show()
     }
     fun newExpense(view: View){
+        /**
+         * Funkcja newExpense realzuje zapis podanego przez użytkownika wydatku do bazy danych.
+         * Korzysta z handlera bazy danych ExpenseDBHandler
+         */
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
 
         val enterExpense = findViewById<EditText>(R.id.enter_expense)
@@ -59,7 +63,7 @@ class EnterExpense : AppCompatActivity() {
         val expensesList = findViewById<ListView>(R.id.expenses_list)
 
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
-        val expenses: List<UserExpense> = dbHandler.findExpense()
+        val expenses: List<UserExpense> = dbHandler.readAllExpenses()
 
         val expArrayID = Array<String>(expenses.size){"0"}
         val expArrayVal = Array<String>(expenses.size){"null"}
@@ -92,9 +96,13 @@ class EnterExpense : AppCompatActivity() {
     }
 
     fun categorySpinnerPop(){
+        /**
+         * Funkcja realizująca wypełnienie listy dostepnych kategorii przy użyciu zdefiniowanych przez użytkownika
+         * kategorii wydatków
+         */
         val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
-        val categories: List<UserCategory> = dbHandler.findCategory()
+        val categories: List<UserCategory> = dbHandler.readAllCategory()
         val ArrayID = Array(categories.size){0}
         val ArrayCat = Array(categories.size){"null"}
         var index = 0
@@ -117,11 +125,32 @@ class EnterExpense : AppCompatActivity() {
                 selectedCat = ArrayCat[position]
                 val selected = ArrayID[position]
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
             }
         }
+    }
+    fun summarizeExpenses(): Float {
+        val dbHandler = ExpenseDBHandler(this, null, null, 1)
+        val expenses: List<UserExpense> = dbHandler.readAllExpenses()
+
+        val expArrayID = Array<String>(expenses.size){"0"}
+        val expArrayVal = Array<String>(expenses.size){"null"}
+        val expArrayCat = Array<String>(expenses.size){"null"}
+        val expArrayDate = Array<String>(expenses.size){"null"}
+
+        var index = 0
+        var sumExp = 0F
+
+        for(e in expenses){
+            expArrayID[index] = e.id.toString()
+            expArrayVal[index] = e.value.toString()
+            expArrayCat[index] = e.category.toString()
+            expArrayDate[index] = e.date.toString()
+            sumExp+=expArrayVal[index].toFloat()
+            index++
+        }
+        return sumExp
     }
 }
 
