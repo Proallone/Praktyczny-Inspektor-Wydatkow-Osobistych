@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.adapters
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.projekt_zespolowy_ezi.R
 
 /**
  * Moduł odpowiający za poprawne zapełnienie pola ListView z wydatkami
@@ -13,23 +14,19 @@ import android.widget.TextView
  * Uzupełniając odpowiednie pola właściwymi wartościami
  */
 
-class ExpenseListAdapter(private val context: Activity, private val id: Array<String>, private val value: Array<String>, private val category: Array<String>,private val date: Array<String>)
+class CategoryListAdapter(private val context: Activity, private val id: Array<String>, private val category: Array<String>)
     : ArrayAdapter<String>(context, R.layout.expense_layout,id) {
 
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
-        val rowView = inflater.inflate(R.layout.expense_layout, null, true)
+        val rowView = inflater.inflate(R.layout.category_layout, null, true)
 
-        val idText = rowView.findViewById(R.id.expenseViewId) as TextView
-        val valueText = rowView.findViewById(R.id.expenseViewVal) as TextView
-        val categoryText = rowView.findViewById(R.id.expenseViewCat) as TextView
-        val dateText = rowView.findViewById(R.id.expenseViewDate) as TextView
+        val idText = rowView.findViewById(R.id.categoryViewId) as TextView
+        val categoryText = rowView.findViewById(R.id.categoryViewCat) as TextView
 
         idText.text = "Id: ${id[position]}"
-        valueText.text = "Value: ${value[position]}"
         categoryText.text = "Category: ${category[position]}"
-        dateText.text = "Date: ${date[position]}"
         return rowView
     }
 }

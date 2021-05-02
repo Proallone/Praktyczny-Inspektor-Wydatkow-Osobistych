@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.activities
 
 
 
@@ -6,6 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
+import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
+import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.SummaryExpenses
+import com.example.projekt_zespolowy_ezi.classes.UserCategory
+import com.example.projekt_zespolowy_ezi.classes.UserExpense
+import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
