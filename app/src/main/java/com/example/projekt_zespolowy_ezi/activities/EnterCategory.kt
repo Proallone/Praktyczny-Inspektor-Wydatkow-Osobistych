@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.activities
 
 import android.os.Bundle
 import android.view.View
@@ -8,6 +8,11 @@ import android.widget.ListView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
+import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
+import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.classes.UserCategory
+import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 
 
 class EnterCategory : AppCompatActivity() {

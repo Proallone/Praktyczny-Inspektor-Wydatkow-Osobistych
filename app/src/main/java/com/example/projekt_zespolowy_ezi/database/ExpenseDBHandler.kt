@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -6,8 +6,8 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.content.res.Resources
-import android.widget.Toast
+import com.example.projekt_zespolowy_ezi.classes.UserCategory
+import com.example.projekt_zespolowy_ezi.classes.UserExpense
 
 /**
  * Data Base Handler - klasa odpowiadająca za implementacje funkcji typu CRUD (Create, Read, Update, Delete) bazy danych
@@ -15,7 +15,9 @@ import android.widget.Toast
  * oferując możliwości jej stworzenia, dodawania elementów oraz wyświetlania
  */
 
-class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.CursorFactory?,version: Int):SQLiteOpenHelper(context,DATABASE_NAME, factory, DATABASE_VERSION) {
+class ExpenseDBHandler(context: Context, name: String?,factory: SQLiteDatabase.CursorFactory?,version: Int):SQLiteOpenHelper(context,
+    DATABASE_NAME, factory, DATABASE_VERSION
+) {
 
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_EXPENSES_TABLE = ("CREATE TABLE "+

@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projekt_zespolowy_ezi.R
 
 //REF https://www.geeksforgeeks.org/how-to-create-an-animated-splash-screen-in-android/
 

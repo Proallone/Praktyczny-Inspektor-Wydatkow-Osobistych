@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.classes
 
 /**
  * Klasa odpowiadająca za implementację wydatków klienta

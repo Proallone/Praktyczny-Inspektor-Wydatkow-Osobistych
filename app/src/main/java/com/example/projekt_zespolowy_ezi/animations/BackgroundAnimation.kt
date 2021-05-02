@@ -1,4 +1,4 @@
-package com.example.projekt_zespolowy_ezi
+package com.example.projekt_zespolowy_ezi.animations
 
 import android.graphics.drawable.AnimationDrawable
 import android.view.View

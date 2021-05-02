@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projekt_zespolowy_ezi">
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,11 +11,11 @@
         android:theme="@style/RedTheme">
         <!-->android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"-->
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".WelcomeView"
+            android:name=".activities.WelcomeView"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -23,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EnterExpense"
+            android:name=".activities.EnterExpense"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activities.MainActivity">
         </activity>
         <activity
-            android:name=".EnterCategory"
+            android:name=".activities.EnterCategory"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activities.MainActivity">
         </activity>
     </application>
 </manifest>
