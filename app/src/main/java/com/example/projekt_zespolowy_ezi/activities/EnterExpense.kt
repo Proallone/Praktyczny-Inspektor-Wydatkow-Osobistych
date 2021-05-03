@@ -1,20 +1,30 @@
 package com.example.projekt_zespolowy_ezi.activities
 
 
-
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
-import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.R
-import com.example.projekt_zespolowy_ezi.SummaryExpenses
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.classes.UserExpense
+import com.example.projekt_zespolowy_ezi.constants.url
 import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import retrofit2.Retrofit
+
+
 
 
 class EnterExpense : AppCompatActivity() {
@@ -27,16 +37,62 @@ class EnterExpense : AppCompatActivity() {
         setContentView(R.layout.activity_enter_expense)
 
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
-        //val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
-        //val expenseCategories = resources.getStringArray(R.array.expense_category_array)
-
-        //val viewExpenseButton = findViewById<Button>(R.id.viewdata)
-
         BackgroundAnimation.animateUI(layout)
-        viewExpenses(layout)
         categorySpinnerPop()
-        //Toast.makeText(this, initialCat.toString(), Toast.LENGTH_SHORT).show()
     }
+    fun newExpense(view: View){
+        /**
+         * Funkcja newExpense realzuje zapis podanego przez użytkownika wydatku do bazy danych.
+         * Korzysta z handlera bazy danych ExpenseDBHandler
+         */
+
+        val enterExpense = findViewById<EditText>(R.id.enter_expense)
+
+        //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
+        val retrofit = Retrofit.Builder().
+            baseUrl(url.BASE_URL).
+            build()
+
+        val service = retrofit.create(APIRequest::class.java)
+
+        if(enterExpense.text.isNotEmpty() && enterExpense.text.toString().toFloat() > 0) {
+
+            val expenseVal = enterExpense.text.toString()
+            /*TIME https://grokonez.com/kotlin/kotlin-get-current-datetime */
+            val currentDateTime = LocalDateTime.now()
+            val date = currentDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
+            //val utl = URL(url.BASE_URL)
+
+            val jsonObject = JSONObject()
+            jsonObject.put("value", expenseVal)
+            jsonObject.put("category",selectedCat)
+            jsonObject.put("date",date)
+
+            val jsonObjectString = jsonObject.toString()
+            Log.d("Object", jsonObjectString)
+
+            val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+            Toast.makeText(this,jsonObjectString, Toast.LENGTH_LONG).show()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = service.addExpense2(requestBody)
+
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+
+                    } else {
+                        Log.e("RETROFIT_ERROR", response.code().toString())
+                    }
+                }
+            }
+            enterExpense.text.clear()
+        }else{
+            Toast.makeText(this, "Wprowadź poprawną wartość", Toast.LENGTH_SHORT).show()
+            enterExpense.text.clear()
+        }
+        //viewExpenses(view)
+    }
+    /*
     fun newExpense(view: View){
         /**
          * Funkcja newExpense realzuje zapis podanego przez użytkownika wydatku do bazy danych.
@@ -62,9 +118,10 @@ class EnterExpense : AppCompatActivity() {
             Toast.makeText(this, "Wprowadź poprawną wartość", Toast.LENGTH_SHORT).show()
             enterExpense.text.clear()
         }
-        viewExpenses(view)
+        //viewExpenses(view)
     }
-
+*/
+    /*
     fun viewExpenses(view: View) {
 
         val expensesList = findViewById<ListView>(R.id.expenses_list)
@@ -101,7 +158,7 @@ class EnterExpense : AppCompatActivity() {
         //Toast.makeText(this,expensesList.toString(),Toast.LENGTH_LONG).show()
 
     }
-
+*/
     fun categorySpinnerPop(){
         /**
          * Funkcja realizująca wypełnienie listy dostepnych kategorii przy użyciu zdefiniowanych przez użytkownika
