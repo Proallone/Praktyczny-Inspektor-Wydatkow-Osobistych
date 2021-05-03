@@ -56,6 +56,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
@@ -67,6 +68,7 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp"/>
+
             <Button
                 android:id="@+id/viewdata"
                 android:layout_width="wrap_content"
@@ -77,8 +79,8 @@
                 android:text="WCZYTAJ"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
-
             </LinearLayout>
+            -->
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

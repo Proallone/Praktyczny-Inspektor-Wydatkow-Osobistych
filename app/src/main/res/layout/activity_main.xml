@@ -58,7 +58,7 @@
                 android:layout_height="20sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300sp"
+                android:layout_height="330sp"
                 android:orientation="vertical">
                 <ListView
                     android:id="@+id/expenses_overview_listview"
@@ -84,6 +84,7 @@
                 android:layout_height="10sp"/>
             <Button
                 android:id="@+id/enter_category"
+                style="@style/RedTheme"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
