@@ -1,6 +1,5 @@
 package com.example.projekt_zespolowy_ezi.activities
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,12 +18,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import okio.Utf8
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import retrofit2.Retrofit
-
-
 
 
 class EnterExpense : AppCompatActivity() {
@@ -42,7 +40,7 @@ class EnterExpense : AppCompatActivity() {
     }
     fun newExpense(view: View){
         /**
-         * Funkcja newExpense realzuje zapis podanego przez użytkownika wydatku do bazy danych.
+         * Funkcja newExpense realizuje zapis podanego przez użytkownika wydatku do bazy danych.
          * Korzysta z handlera bazy danych ExpenseDBHandler
          */
 
@@ -58,10 +56,10 @@ class EnterExpense : AppCompatActivity() {
         if(enterExpense.text.isNotEmpty() && enterExpense.text.toString().toFloat() > 0) {
 
             val expenseVal = enterExpense.text.toString()
+
             /*TIME https://grokonez.com/kotlin/kotlin-get-current-datetime */
             val currentDateTime = LocalDateTime.now()
-            val date = currentDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
-            //val utl = URL(url.BASE_URL)
+            val date = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
 
             val jsonObject = JSONObject()
             jsonObject.put("value", expenseVal)
@@ -69,18 +67,19 @@ class EnterExpense : AppCompatActivity() {
             jsonObject.put("date",date)
 
             val jsonObjectString = jsonObject.toString()
-            Log.d("Object", jsonObjectString)
+            Log.d("Object sent", jsonObjectString)
 
-            val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
-            Toast.makeText(this,jsonObjectString, Toast.LENGTH_LONG).show()
+            val requestBody = jsonObjectString.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
 
             CoroutineScope(Dispatchers.IO).launch {
                 val response = service.addExpense2(requestBody)
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-
+                        Toast.makeText(this@EnterExpense, "Zapisano wydatek " + expenseVal + "zł", Toast.LENGTH_SHORT).show()
+                        Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                     } else {
+                        Toast.makeText(this@EnterExpense, jsonObjectString, Toast.LENGTH_SHORT).show()
                         Log.e("RETROFIT_ERROR", response.code().toString())
                     }
                 }
@@ -90,7 +89,6 @@ class EnterExpense : AppCompatActivity() {
             Toast.makeText(this, "Wprowadź poprawną wartość", Toast.LENGTH_SHORT).show()
             enterExpense.text.clear()
         }
-        //viewExpenses(view)
     }
     /*
     fun newExpense(view: View){
