@@ -1,5 +1,6 @@
 package com.example.projekt_zespolowy_ezi.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,10 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         title = "Projekt PIWO"
         val layout: RelativeLayout = findViewById(R.id.main_layout)
-        val summaryView = findViewById<TextView>(R.id.summary_value)
-        val expensesList = findViewById<ListView>(R.id.expenses_overview_listview)
-        //SummaryExpenses.summary = summaryLoad.summarizeExpenses()
-        //summaryView.text = SummaryExpenses.summary.toString()
 
         BackgroundAnimation.animateUI(layout)
 
@@ -73,13 +70,12 @@ class MainActivity : AppCompatActivity() {
             .build()
             .create(APIRequest::class.java)
 
-
-
                 val expensesList = findViewById<ListView>(R.id.expenses_overview_listview)
                 val expensesSummary = findViewById<TextView>(R.id.summary_value)
                 val response = retrofitBuilder.getAllExpenses()
 
                 response.enqueue(object : Callback<List<UserExpenseJSONItem>?> {
+                    @SuppressLint("SetTextI18n")
                     override fun onResponse(
                         call: Call<List<UserExpenseJSONItem>?>,
                         response: Response<List<UserExpenseJSONItem>?>
@@ -92,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                         val expArrayVal = Array<String>(responseBody.size){"null"}
                         val expArrayCat = Array<String>(responseBody.size){"null"}
                         val expArrayDate = Array<String>(responseBody.size){"null"}
+                        val expArrayDel = Array<String>(responseBody.size){"null"}
                         var sumExp = 0.0F
                         var index = 0
 
@@ -99,7 +96,8 @@ class MainActivity : AppCompatActivity() {
                             expArrayID[index] = e.id.toString()
                             expArrayVal[index] = e.value
                             expArrayCat[index] = e.category
-                            expArrayDate[index]=e.date
+                            expArrayDate[index] = e.date
+                            expArrayDel[index] = e.deleted
                             sumExp+=expArrayVal[index].toFloat()
                             index++
                         }
