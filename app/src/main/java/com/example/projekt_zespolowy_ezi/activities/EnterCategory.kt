@@ -1,6 +1,7 @@
 package com.example.projekt_zespolowy_ezi.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +11,6 @@ import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 
-
-var selectedItem = 0
 
 class EnterCategory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,11 +22,28 @@ class EnterCategory : AppCompatActivity() {
         BackgroundAnimation.animateUI(layout)
         viewCategories(layout)
 
+
         selectedItem.setOnItemClickListener { parent, view, position, id ->
-            val element : String = selectedItem.getItemAtPosition(position) as String // The item that was clicked
-            removeCat(element.toInt())
+            val sel: String = selectedItem.getItemAtPosition(position) as String
+
+            //Popup menu
+            val popupMenu: PopupMenu = PopupMenu(this,selectedItem)
+            popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                when(item.itemId) {
+                    R.id.delete ->
+                        Log.d("RETROFIT SUCCESS, EXPENSE ID" + sel + " REMOVED" ,"SUCCESS")
+                }
+                removeCat(sel.toInt())
+                viewCategories(view)
+                true
+            })
+            popupMenu.show()
         }
     }
+
+
 
 
     fun newCategory(view: View){

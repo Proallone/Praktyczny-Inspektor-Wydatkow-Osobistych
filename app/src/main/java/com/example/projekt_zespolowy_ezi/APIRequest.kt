@@ -8,9 +8,7 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface APIRequest {
     @GET("/expenses")
@@ -20,6 +18,11 @@ interface APIRequest {
     fun addExpense(@Body newExpense: UserExpense):Call<UserExpense>
 
     @POST("/expenses")
+    @Headers("Accept:application/json","Content-Type:application/json")
     suspend fun addExpense2(@Body requestbody: RequestBody): Response<ResponseBody>
+
+    @PATCH("/expenses/id/{id}")
+    @Headers("Accept:application/json","Content-Type:application/json")
+    suspend fun deleteExpense(@Path("id") id: Int, @Body requestbody: RequestBody):Response<ResponseBody>
 
 }

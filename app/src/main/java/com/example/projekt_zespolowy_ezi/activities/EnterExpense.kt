@@ -36,6 +36,7 @@ class EnterExpense : AppCompatActivity() {
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
         BackgroundAnimation.animateUI(layout)
         categorySpinnerPop()
+
     }
     fun newExpense(view: View){
         /**
