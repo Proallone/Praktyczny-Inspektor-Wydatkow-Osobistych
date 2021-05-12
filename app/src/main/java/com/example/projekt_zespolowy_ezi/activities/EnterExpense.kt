@@ -10,7 +10,7 @@ import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.classes.UserExpense
-import com.example.projekt_zespolowy_ezi.constants.url
+import com.example.projekt_zespolowy_ezi.constants.URL
 import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import okio.Utf8
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -48,7 +47,7 @@ class EnterExpense : AppCompatActivity() {
 
         //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
         val retrofit = Retrofit.Builder().
-            baseUrl(url.BASE_URL).
+            baseUrl(URL.BASE_URL).
             build()
 
         val service = retrofit.create(APIRequest::class.java)

@@ -7,5 +7,5 @@ data class UserExpenseJSONItem(
     val id: Int,
     val value: String,
     @SerializedName("deleted")
-    val deleted: String
+    var deleted: Int
 )
