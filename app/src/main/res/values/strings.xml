@@ -1,26 +1,16 @@
 <resources>
     <string name="app_name">PIWO</string>
     <string name="app_name_bar">PIWO - Twój inspektor budżetu</string>
-    <string name="user_input">Wprowadź wydatek</string>
+    <string name="user_input">Zarządzaj wydatkami</string>
     <string name="summary">Podsumowanie:</string>
-    <string name="expense">702,51zł</string>
     <string name="name_p">Praktyczny</string>
     <string name="name_i">Inspektor</string>
     <string name="name_w">Wydatków</string>
     <string name="name_o">Osobistych</string>
     <string name="input">Wprowadź wydatek</string>
-    <string name="predict">Przewiduj wydatki</string>
     <string name="save_expense">Zapisz</string>
     <string name="selected_category">Wybrana kategoria</string>
 
-    <string-array name="expense_category_array">
-        <item>Art. spożywcze</item>
-        <item>Chemia</item>
-        <item>Elektronika</item>
-        <item>Rozrywka</item>
-        <item>Usługi</item>
-        <item>Wydatki internetowe</item>
-    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter
  * Uzupełniając odpowiednie pola właściwymi wartościami
  */
 
-class ExpenseListAdapter(private val context: Activity, private val id: Array<String>, private val value: Array<String>, private val category: Array<String>,private val date: Array<String>)
+class ExpenseListAdapter(private val context: Activity, private val id: Array<String>, private val value: Array<String>, private val category: Array<String>,private val date: Array<String>,private val deleted: Array<Int>)
     : ArrayAdapter<String>(context, R.layout.expense_layout,id) {
 
     @SuppressLint("ViewHolder", "SetTextI18n")
@@ -27,11 +27,13 @@ class ExpenseListAdapter(private val context: Activity, private val id: Array<St
         val valueText = rowView.findViewById(R.id.expenseViewVal) as TextView
         val categoryText = rowView.findViewById(R.id.expenseViewCat) as TextView
         val dateText = rowView.findViewById(R.id.expenseViewDate) as TextView
+        val deletedText = rowView.findViewById(R.id.expenseViewDeleted) as TextView
 
         idText.text = "Id: ${id[position]}"
         valueText.text = "Value: ${value[position]}"
         categoryText.text = "Category: ${category[position]}"
         dateText.text = "Date: ${date[position]}"
+        deletedText.text = "Deleted: ${deleted[position]}"
         return rowView
     }
 }

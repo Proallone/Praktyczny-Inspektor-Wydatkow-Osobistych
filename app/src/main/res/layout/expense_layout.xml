@@ -37,4 +37,11 @@
         android:text="Date:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+    <TextView
+        android:id="@+id/expenseViewDeleted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deleted:"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 </LinearLayout>

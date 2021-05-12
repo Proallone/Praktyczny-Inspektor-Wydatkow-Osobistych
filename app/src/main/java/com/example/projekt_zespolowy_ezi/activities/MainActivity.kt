@@ -10,7 +10,7 @@ import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.api.UserExpenseJSONItem
-import com.example.projekt_zespolowy_ezi.constants.url
+import com.example.projekt_zespolowy_ezi.constants.URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Call
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAPIRequest(){
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(url.BASE_URL)
+            .baseUrl(URL.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(APIRequest::class.java)
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                         val expArrayVal = Array<String>(responseBody.size){"null"}
                         val expArrayCat = Array<String>(responseBody.size){"null"}
                         val expArrayDate = Array<String>(responseBody.size){"null"}
-                        val expArrayDel = Array<String>(responseBody.size){"null"}
+                        val expArrayDel = Array<Int>(responseBody.size){0}
                         var sumExp = 0.0F
                         var index = 0
 
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                             index++
                         }
                         expensesSummary.text = sumExp.toString() + "zł"
-                        val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate)
+                        val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
                         expensesList.adapter = expListAdapter
                     }
 

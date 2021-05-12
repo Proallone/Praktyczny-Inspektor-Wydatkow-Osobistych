@@ -2,18 +2,16 @@ package com.example.projekt_zespolowy_ezi.activities
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.ListView
-
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
-import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
 import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 
+
+var selectedItem = 0
 
 class EnterCategory : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +28,7 @@ class EnterCategory : AppCompatActivity() {
             removeCat(element.toInt())
         }
     }
+
 
     fun newCategory(view: View){
         /**
@@ -59,7 +58,6 @@ class EnterCategory : AppCompatActivity() {
          */
         val dbHandler = ExpenseDBHandler(this,null,null,1)
         val success = dbHandler.removeCategory(UserCategory(id,""))
-        //Toast.makeText(this, "Usunięto kategorię ID: $id", Toast.LENGTH_SHORT).show()
     }
 
     fun viewCategories(view: View) {

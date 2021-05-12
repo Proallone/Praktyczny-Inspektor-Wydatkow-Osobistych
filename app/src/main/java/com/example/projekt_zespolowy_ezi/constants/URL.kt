@@ -1,5 +1,5 @@
 package com.example.projekt_zespolowy_ezi.constants
 
-object url {
+object URL {
     const val  BASE_URL = "https://piwoezi.herokuapp.com"
 }

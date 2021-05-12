@@ -75,7 +75,7 @@
                 android:layout_height="60sp"
                 android:background="@drawable/relative_rounded"
                 android:layout_gravity="center"
-                android:text="@string/input"
+                android:text="@string/user_input"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
