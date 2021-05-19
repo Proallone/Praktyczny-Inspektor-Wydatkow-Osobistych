@@ -21,4 +21,18 @@
         android:text="Category:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+    <TextView
+        android:id="@+id/categoryViewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+    <TextView
+        android:id="@+id/categoryViewDel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deleted:"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 </LinearLayout>
