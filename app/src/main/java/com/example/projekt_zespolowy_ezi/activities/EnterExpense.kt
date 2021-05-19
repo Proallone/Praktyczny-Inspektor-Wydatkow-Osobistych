@@ -1,5 +1,6 @@
 package com.example.projekt_zespolowy_ezi.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
+import com.example.projekt_zespolowy_ezi.api.UserCategoryJSONItem
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.classes.UserExpense
 import com.example.projekt_zespolowy_ezi.constants.URL
@@ -19,9 +22,13 @@ import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class EnterExpense : AppCompatActivity() {
@@ -35,7 +42,8 @@ class EnterExpense : AppCompatActivity() {
 
         val layout: RelativeLayout = findViewById(R.id.enter_expense_layout)
         BackgroundAnimation.animateUI(layout)
-        categorySpinnerPop()
+        //categorySpinnerPop()
+        getCategoriesSpinner()
 
     }
     fun newExpense(view: View){
@@ -157,6 +165,63 @@ class EnterExpense : AppCompatActivity() {
 
     }
 */
+    fun getCategoriesSpinner(){
+        val retrofitBuilder = Retrofit.Builder()
+            .baseUrl(URL.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(APIRequest::class.java)
+
+        val response = retrofitBuilder.getAllCategories()
+        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
+
+        response.enqueue(object : Callback<List<UserCategoryJSONItem>?> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<List<UserCategoryJSONItem>?>,
+                response: Response<List<UserCategoryJSONItem>?>
+            ) {
+                val responseBody = response.body()!!
+                /*
+                Pola poniżej służą do populacji adaptera
+                 */
+                val ArrayID = Array<String>(responseBody.size){"0"}
+                val ArrayCat = Array<String>(responseBody.size){"null"}
+                val ArrayDate = Array<String>(responseBody.size){"null"}
+                val ArrayDel = Array<Int>(responseBody.size){0}
+                var index = 0
+
+                for(e in responseBody){
+                    ArrayID[index] = e.id.toString()
+                    ArrayCat[index] = e.category.toString()
+                    ArrayDate[index] = e.date
+                    ArrayDel[index] = e.deleted
+                    index++
+                }
+                if (categorySpinner != null){
+                    val adapter = ArrayAdapter(this@EnterExpense, R.layout.spinner_selected_layout, ArrayCat)
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+                    categorySpinner.adapter = adapter
+                }
+                categorySpinner.onItemSelectedListener = object :
+                    AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                        selectedCat = ArrayCat[position]
+                        val selected = ArrayID[position]
+                    }
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        // write code to perform some action
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserCategoryJSONItem>?>, t: Throwable) {
+                Toast.makeText(this@EnterExpense,"Coś poszło nie tak",Toast.LENGTH_LONG).show()
+            }
+        })
+
+    }
+
     fun categorySpinnerPop(){
         /**
          * Funkcja realizująca wypełnienie listy dostepnych kategorii przy użyciu zdefiniowanych przez użytkownika
@@ -192,27 +257,37 @@ class EnterExpense : AppCompatActivity() {
             }
         }
     }
-    fun summarizeExpenses(): Float {
+    /*fun categorySpinnerPop(){
+
+        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
         val dbHandler = ExpenseDBHandler(this, null, null, 1)
-        val expenses: List<UserExpense> = dbHandler.readAllExpenses()
-
-        val expArrayID = Array<String>(expenses.size){"0"}
-        val expArrayVal = Array<String>(expenses.size){"null"}
-        val expArrayCat = Array<String>(expenses.size){"null"}
-        val expArrayDate = Array<String>(expenses.size){"null"}
-
+        val categories: List<UserCategory> = dbHandler.readAllCategory()
+        val ArrayID = Array(categories.size){0}
+        val ArrayCat = Array(categories.size){"null"}
         var index = 0
-        var sumExp = 0F
 
-        for(e in expenses){
-            expArrayID[index] = e.id.toString()
-            expArrayVal[index] = e.value.toString()
-            expArrayCat[index] = e.category.toString()
-            expArrayDate[index] = e.date.toString()
-            sumExp+=expArrayVal[index].toFloat()
+        for(c in categories){
+            ArrayID[index] = c.id
+            ArrayCat[index] = c.category.toString()
             index++
         }
-        return sumExp
-    }
+
+        if (categorySpinner != null){
+            val adapter = ArrayAdapter(this, R.layout.spinner_selected_layout, ArrayCat)
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
+            categorySpinner.adapter = adapter
+        }
+
+        categorySpinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                selectedCat = ArrayCat[position]
+                val selected = ArrayID[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+    }*/
 }
 

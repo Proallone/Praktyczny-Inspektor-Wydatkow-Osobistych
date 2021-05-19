@@ -11,6 +11,7 @@ import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
 import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
+import com.example.projekt_zespolowy_ezi.api.UserCategoryJSON
 import com.example.projekt_zespolowy_ezi.api.UserCategoryJSONItem
 import com.example.projekt_zespolowy_ezi.api.UserExpenseJSONItem
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
@@ -20,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.get
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
@@ -40,7 +42,6 @@ class EnterCategory : AppCompatActivity() {
         val selectedItem: ListView = findViewById(R.id.category_list)
 
         BackgroundAnimation.animateUI(layout)
-        //viewCategories(layout)
         getAllCategories()
 
 
@@ -54,14 +55,18 @@ class EnterCategory : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                 when(item.itemId) {
                     R.id.delete ->
-                        Log.d("RETROFIT SUCCESS, EXPENSE ID" + sel + " REMOVED" ,"SUCCESS")
+                        Log.d("RETROFIT SUCCESS, CATEGORY ID" + sel + " REMOVED" ,"SUCCESS")
                 }
-                removeCat(sel.toInt())
+                deleteCategory(sel.toInt())
                 getAllCategories()
                 true
             })
             popupMenu.show()
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        getAllCategories()
     }
     fun newCategory(view: View){
         /**
@@ -99,6 +104,7 @@ class EnterCategory : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
+                        getAllCategories()
                         Toast.makeText(this@EnterCategory, "Zapisano kategorię " + newCat, Toast.LENGTH_SHORT).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                     } else {
@@ -114,7 +120,42 @@ class EnterCategory : AppCompatActivity() {
         }
     }
 
+    private fun deleteCategory(category_id: Int){
+        /**
+         * Funkcja odpowiedzialna za usunięcie wybranego wydatku z serwerowej bazy danych
+         */
+        //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
+        val retrofit = Retrofit.Builder().
+        baseUrl(URL.BASE_URL).
+        build()
 
+        val service = retrofit.create(APIRequest::class.java)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("id", category_id)
+        jsonObject.put("deleted", 1)
+
+        val jsonObjectString = jsonObject.toString()
+        Log.d("Object sent", jsonObjectString)
+
+        val requestBody = jsonObjectString.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.deleteCategory(category_id,requestBody)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@EnterCategory, "Usunięto kategorię id:" + category_id, Toast.LENGTH_SHORT).show()
+                    getAllCategories()
+                    Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
+                } else {
+                    Toast.makeText(this@EnterCategory, jsonObjectString, Toast.LENGTH_SHORT).show()
+                    getAllCategories()
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+                }
+            }
+        }
+    }
 
     /*fun newCategory(view: View){
         *//**
@@ -137,16 +178,16 @@ class EnterCategory : AppCompatActivity() {
         viewCategories(view)
     }*/
 
-    fun removeCat(id: Int){
-        /**
+   /* fun removeCat(id: Int){
+        *//**
          * Funkcja umożliwiająca usuwanie wskazanej z listview kategorii wydatków przez użytkownika,
          * Korzysta z handlera bazy danych w pliku ExpenseDBHandler
-         */
+         *//*
         val dbHandler = ExpenseDBHandler(this,null,null,1)
         val success = dbHandler.removeCategory(UserCategory(id,""))
-    }
+    }*/
 
-    private fun getAllCategories(){
+    fun getAllCategories(){
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(URL.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

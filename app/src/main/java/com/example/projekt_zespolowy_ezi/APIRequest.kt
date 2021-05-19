@@ -20,18 +20,22 @@ interface APIRequest {
     fun addExpense(@Body newExpense: UserExpense):Call<UserExpense>
 
     @POST("/expenses")
-    @Headers("Accept:application/json","Content-Type:application/json")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun addExpense2(@Body requestbody: RequestBody): Response<ResponseBody>
 
     @PATCH("/expenses/id/{id}")
-    @Headers("Accept:application/json","Content-Type:application/json")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun deleteExpense(@Path("id") id: Int, @Body requestbody: RequestBody):Response<ResponseBody>
 
     @GET("/categories")
     fun getAllCategories(): Call<List<UserCategoryJSONItem>>
 
     @POST("/categories")
-    @Headers("Accept:application/json","Content-Type:application/json")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun addCategory(@Body requestbody: RequestBody): Response<ResponseBody>
+
+    @PATCH("/categories/id/{id}")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
+    suspend fun deleteCategory(@Path("id") id: Int, @Body requestbody: RequestBody):Response<ResponseBody>
 
 }
