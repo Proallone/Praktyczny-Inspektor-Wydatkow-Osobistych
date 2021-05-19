@@ -4,28 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearLayout"
-    android:background="@drawable/relative_rounded_expenses">
+    android:background="@drawable/relative_rounded_purple_blue">
     <TextView
         android:id="@+id/expenseViewVal"
-        android:paddingLeft="10sp"
+        android:paddingLeft="15sp"
         android:paddingTop="3sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Value:"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     <TextView
         android:id="@+id/expenseViewCat"
-        android:paddingLeft="10sp"
+        android:paddingLeft="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Category:"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     <TextView
         android:id="@+id/expenseViewDate"
-        android:paddingLeft="10sp"
+        android:paddingLeft="15sp"
         android:paddingBottom="3sp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date:"

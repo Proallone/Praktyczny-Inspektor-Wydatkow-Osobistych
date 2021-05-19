@@ -26,24 +26,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/background_gradient_new1">
+                android:background="@drawable/relative_rounded_purple_blue">
             <ImageView
                 android:layout_width="75sp"
                 android:layout_height="75sp"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:src="@mipmap/logo_transparent_foreground" />
-            <TextView
-                android:id="@+id/summary_text"
-                android:layout_width="180sp"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingLeft="20sp"
-                android:text="@string/summary"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:src="@mipmap/logo_transparent_white_foreground" />
+                <TextView
+                    android:id="@+id/summary_text"
+                    android:layout_width="180sp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20sp"
+                    android:text="@string/summary"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/summary_value"
                     android:layout_width="match_parent"
@@ -65,7 +66,9 @@
                 <ListView
                     android:id="@+id/expenses_overview_listview"
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent" />
+                    android:layout_height="fill_parent"
+                    android:dividerHeight="5sp"
+                    android:divider="@color/Transparent"/>
             </LinearLayout>
             <Space
                 android:layout_width="match_parent"
@@ -80,8 +83,8 @@
                     android:id="@+id/enter_expense"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_marginStart="23dp"
-                    android:background="@drawable/relative_rounded_red"
+                    android:layout_marginStart="33dp"
+                    android:background="@drawable/relative_rounded_purple_blue"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
                     android:src="@drawable/ic_baseline_expense"
@@ -94,37 +97,39 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="45dp"
-                    android:background="@drawable/relative_rounded_red"
+                    android:background="@drawable/relative_rounded_purple_blue"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
                     android:src="@drawable/ic_baseline_category"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/enter_expense"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageButton
                     android:id="@+id/user_profile"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="45dp"
-                    android:background="@drawable/relative_rounded_red"
+                    android:background="@drawable/relative_rounded_purple_blue"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
                     android:src="@drawable/ic_baseline_profile"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/enter_category"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageButton
                     android:id="@+id/user_options"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="45dp"
-                    android:background="@drawable/relative_rounded_red"
+                    android:background="@drawable/relative_rounded_purple_blue"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
                     android:src="@drawable/ic_baseline_settings_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/user_profile"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </RelativeLayout>

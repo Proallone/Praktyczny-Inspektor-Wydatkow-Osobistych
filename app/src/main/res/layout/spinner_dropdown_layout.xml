@@ -11,6 +11,6 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:layout_centerHorizontal="true"
     android:textColor="@color/white"
-    android:background="@color/TransparentPrimaryRed"
+    android:background="@drawable/relative_rounded_purple_blue"
     android:textStyle="bold"
-    android:textAlignment="center"/>
+    android:textAlignment="center" />

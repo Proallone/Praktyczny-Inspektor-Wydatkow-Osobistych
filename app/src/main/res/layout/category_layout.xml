@@ -5,18 +5,24 @@
     android:layout_height="wrap_content"
     android:id="@+id/linearLayout"
     android:layout_marginBottom="3dp"
-    android:layout_marginTop="3dp">
+    android:layout_marginTop="3dp"
+    android:background="@drawable/relative_rounded_purple_blue">
 
     <TextView
         android:id="@+id/categoryViewCat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15sp"
+        android:textColor="@color/white"
+        android:paddingTop="3sp"
         android:text="Category:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     <TextView
         android:id="@+id/categoryViewDate"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:paddingLeft="15sp"
         android:layout_height="wrap_content"
         android:text="Date"
         android:textStyle="bold"
