@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val selectedItem: ListView = findViewById(R.id.expenses_overview_listview)
 
         BackgroundAnimation.animateUI(layout)
-        getAPIRequest()
+        getExpenses()
 
         val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
         val enterCategoryButton = findViewById<Button>(R.id.enter_category)
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        getAPIRequest()
+        getExpenses()
     }
 
     private fun enterActualExpense(){
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     //https://www.youtube.com/watch?v=-U8Hkec3RWQ&t=310s&ab_channel=CodePalace
 
-    private fun getAPIRequest(){
+    private fun getExpenses(){
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(URL.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -144,6 +144,7 @@ class MainActivity : AppCompatActivity() {
                 })
 
     }
+
     fun deleteExpense(expense_id: Int){
         /**
          * Funkcja odpowiedzialna za usunięcie wybranego wydatku z serwerowej bazy danych
@@ -170,11 +171,11 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@MainActivity, "Usunięto wydatek id:" + expense_id, Toast.LENGTH_SHORT).show()
-                        getAPIRequest()
+                        getExpenses()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                     } else {
                         Toast.makeText(this@MainActivity, jsonObjectString, Toast.LENGTH_SHORT).show()
-                        getAPIRequest()
+                        getExpenses()
                         Log.e("RETROFIT_ERROR", response.code().toString())
                     }
                 }
