@@ -22,7 +22,7 @@
                 android:layout_height="60sp"
                 android:layout_gravity="center"
                 android:autofillHints="@color/white"
-                android:background="@drawable/relative_rounded"
+                android:background="@drawable/relative_rounded_red"
                 android:gravity="center"
                 android:hint="@string/input"
                 android:inputType="numberDecimal"
@@ -39,7 +39,7 @@
                 android:id="@+id/expense_category_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
+                android:background="@drawable/relative_rounded_red"
                 android:gravity="center"
                 android:textAlignment="center"/>
             <Space
@@ -50,7 +50,7 @@
                 android:layout_width="100sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
-                android:background="@drawable/relative_rounded"
+                android:background="@drawable/relative_rounded_red"
                 android:onClick="newExpense"
                 android:text="@string/save_expense"
                 android:textColor="@color/white"

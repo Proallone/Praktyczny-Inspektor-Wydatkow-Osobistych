@@ -8,13 +8,6 @@
     android:layout_marginTop="3dp">
 
     <TextView
-        android:id="@+id/categoryViewId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        android:textStyle="bold"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-    <TextView
         android:id="@+id/categoryViewCat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,11 +21,5 @@
         android:text="Date"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-    <TextView
-        android:id="@+id/categoryViewDel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Deleted:"
-        android:textStyle="bold"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
 </LinearLayout>

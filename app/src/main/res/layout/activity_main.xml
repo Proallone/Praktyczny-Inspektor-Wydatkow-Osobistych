@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -16,25 +18,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:layout_gravity="center"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:src="@mipmap/logo_transparent_foreground" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10sp"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/relative_rounded">
+                android:background="@drawable/background_gradient_new1">
+            <ImageView
+                android:layout_width="75sp"
+                android:layout_height="75sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@mipmap/logo_transparent_foreground" />
             <TextView
                 android:id="@+id/summary_text"
-                android:layout_width="200sp"
+                android:layout_width="180sp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="20sp"
@@ -46,19 +47,19 @@
                 <TextView
                     android:id="@+id/summary_value"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:padding="20sp"/>
+                    android:layout_gravity="left"
+                    android:gravity="center"/>
             </LinearLayout>
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="20sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="330sp"
+                android:layout_height="500sp"
                 android:orientation="vertical">
 
                 <ListView
@@ -69,34 +70,62 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp"/>
-            <Button
-                android:id="@+id/enter_expense"
-                style="@style/RedTheme"
+        </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
-                android:layout_gravity="center"
-                android:text="@string/user_input"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="15sp"/>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10sp"/>
-            <Button
-                android:id="@+id/enter_category"
-                style="@style/RedTheme"
-                android:layout_width="match_parent"
-                android:layout_height="60sp"
-                android:background="@drawable/relative_rounded"
-                android:layout_gravity="center"
-                android:text="Wprowadź kategorię"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="15sp"/>
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="20sp"/>
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/enter_expense"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="23dp"
+                    android:background="@drawable/relative_rounded_red"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_baseline_expense"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/enter_category"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="45dp"
+                    android:background="@drawable/relative_rounded_red"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_baseline_category"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/enter_expense"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <ImageButton
+                    android:id="@+id/user_profile"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="45dp"
+                    android:background="@drawable/relative_rounded_red"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_baseline_profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/enter_category"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <ImageButton
+                    android:id="@+id/user_options"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="45dp"
+                    android:background="@drawable/relative_rounded_red"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:src="@drawable/ic_baseline_settings_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/user_profile"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

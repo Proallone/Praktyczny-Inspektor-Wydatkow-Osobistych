@@ -24,6 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.format.DateTimeFormatter
 
 
 /**
@@ -43,9 +44,8 @@ class MainActivity : AppCompatActivity() {
         BackgroundAnimation.animateUI(layout)
         getExpenses()
 
-        val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
-        val enterCategoryButton = findViewById<Button>(R.id.enter_category)
-
+        val enterExpenseButton = findViewById<ImageButton>(R.id.enter_expense)
+        val enterCategoryButton = findViewById<ImageButton>(R.id.enter_category)
 
 
         enterExpenseButton.setOnClickListener {
@@ -122,12 +122,13 @@ class MainActivity : AppCompatActivity() {
                         val expArrayDel = Array<Int>(responseBody.size){0}
                         var sumExp = 0.0F
                         var index = 0
+                        var formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy")
 
                         for(e in responseBody){
                             expArrayID[index] = e.id.toString()
                             expArrayVal[index] = e.value
                             expArrayCat[index] = e.category
-                            expArrayDate[index] = e.date
+                            expArrayDate[index] = e.date.format(formatter)
                             expArrayDel[index] = e.deleted
                             sumExp+=expArrayVal[index].toFloat()
                             index++
