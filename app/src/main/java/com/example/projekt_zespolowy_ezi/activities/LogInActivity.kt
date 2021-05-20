@@ -6,10 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.constants.URL
+import com.example.projekt_zespolowy_ezi.constants.UserID
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +28,6 @@ class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
-
     }
     fun Login(view: View){
 
@@ -57,6 +61,12 @@ class LogInActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
+                        //val responseBody = response.body()!!
+                        val responseBody = response.body()?.string()
+                        val responseJSON = JSONObject(responseBody)
+                        val usrID = responseJSON.getString("id")
+                        UserID.userId = usrID.toInt()
+                        //Toast.makeText(this@LogInActivity, usrID, Toast.LENGTH_LONG).show()
                         Toast.makeText(this@LogInActivity, "Zalogowano!", Toast.LENGTH_LONG).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                         Log.d("RESPONSE", response.toString())

@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
          <ImageView
              android:id="@+id/WelcomeViewImage"
              android:layout_width="50dp"
@@ -28,7 +29,7 @@
              android:background="@drawable/relative_rounded_purple_blue"/>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20sp"/>
+            android:layout_height="40sp"/>
         <TextView
             android:id="@+id/name_p"
             android:layout_width="match_parent"

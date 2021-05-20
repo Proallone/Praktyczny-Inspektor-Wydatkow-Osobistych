@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
+
 
 //REF https://www.geeksforgeeks.org/how-to-create-an-animated-splash-screen-in-android/
 
@@ -24,7 +26,6 @@ class WelcomeView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_view)
         val layout : RelativeLayout = findViewById(R.id.activity_welcome_layout)
-
         val loginButton = findViewById<Button>(R.id.enter_login)
         val signupButton = findViewById<Button>(R.id.enter_signup)
         loginButton.setVisibility(View.GONE)

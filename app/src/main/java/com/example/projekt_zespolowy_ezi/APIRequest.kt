@@ -14,10 +14,19 @@ import retrofit2.http.*
 
 interface APIRequest {
     @GET("/expenses")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     fun getAllExpenses(): Call<List<UserExpenseJSONItem>>
 
-    @POST("/expenses")
-    fun addExpense(@Body newExpense: UserExpense):Call<UserExpense>
+    //@POST("/expenses")
+    //fun addExpense(@Body newExpense: UserExpense):Call<UserExpense>
+
+    @GET("/users/expenses/{user_id}")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
+    fun userExpenses(@Path("user_id") id: Int): Call<List<UserExpenseJSONItem>>
+
+    @GET("/users/categories/{user_id}")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
+    fun userCategories(@Path("user_id") id: Int): Call<List<UserCategoryJSONItem>>
 
     @POST("/expenses")
     @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")

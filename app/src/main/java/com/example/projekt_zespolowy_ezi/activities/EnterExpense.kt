@@ -14,6 +14,7 @@ import com.example.projekt_zespolowy_ezi.api.UserCategoryJSONItem
 import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.classes.UserExpense
 import com.example.projekt_zespolowy_ezi.constants.URL
+import com.example.projekt_zespolowy_ezi.constants.UserID
 import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -70,8 +71,10 @@ class EnterExpense : AppCompatActivity() {
             //val date = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
 
             val jsonObject = JSONObject()
+            jsonObject.put("user_id",UserID.userId)
             jsonObject.put("value", expenseVal)
             jsonObject.put("category",selectedCat)
+
 
             val jsonObjectString = jsonObject.toString()
             Log.d("Object sent", jsonObjectString)

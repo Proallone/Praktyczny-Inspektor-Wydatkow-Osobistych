@@ -17,7 +17,9 @@ import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.api.UserExpenseJSONItem
+import com.example.projekt_zespolowy_ezi.classes.UserExpense
 import com.example.projekt_zespolowy_ezi.constants.URL
+import com.example.projekt_zespolowy_ezi.constants.UserID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -129,7 +131,59 @@ class MainActivity : AppCompatActivity() {
 
     //https://www.youtube.com/watch?v=-U8Hkec3RWQ&t=310s&ab_channel=CodePalace
 
+
     private fun getExpenses(){
+        val retrofitBuilder = Retrofit.Builder()
+            .baseUrl(URL.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(APIRequest::class.java)
+
+        val expensesList = findViewById<ListView>(R.id.expenses_overview_listview)
+        val expensesSummary = findViewById<TextView>(R.id.summary_value)
+        val response = retrofitBuilder.userExpenses(UserID.userId!!)
+
+        response.enqueue(object : Callback<List<UserExpenseJSONItem>?> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<List<UserExpenseJSONItem>?>,
+                response: Response<List<UserExpenseJSONItem>?>
+            ) {
+                val responseBody = response.body()!!
+                /*
+                Pola poniżej służą do populacji adaptera
+                 */
+                val expArrayID = Array<String>(responseBody.size){"0"}
+                val expArrayVal = Array<String>(responseBody.size){"null"}
+                val expArrayCat = Array<String>(responseBody.size){"null"}
+                val expArrayDate = Array<String>(responseBody.size){"null"}
+                val expArrayDel = Array<Int>(responseBody.size){0}
+                var sumExp = 0.0F
+                var index = 0
+
+                for(e in responseBody){
+                    expArrayID[index] = e.id.toString()
+                    expArrayVal[index] = e.value
+                    expArrayCat[index] = e.category
+                    expArrayDate[index] = e.date
+                    expArrayDel[index] = e.deleted
+                    sumExp+=expArrayVal[index].toFloat()
+                    index++
+                }
+                var sumExpS=String.format("%.2f", sumExp)
+                expensesSummary.text = sumExpS + "zł"
+                val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
+                expensesList.adapter = expListAdapter
+            }
+
+            override fun onFailure(call: Call<List<UserExpenseJSONItem>?>, t: Throwable) {
+                Toast.makeText(this@MainActivity,"Coś poszło nie tak",Toast.LENGTH_LONG).show()
+            }
+        })
+
+    }
+
+    /*private fun getExpenses(){
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(URL.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -147,9 +201,9 @@ class MainActivity : AppCompatActivity() {
                         response: Response<List<UserExpenseJSONItem>?>
                     ) {
                         val responseBody = response.body()!!
-                        /*
+                        *//*
                         Pola poniżej służą do populacji adaptera
-                         */
+                         *//*
                         val expArrayID = Array<String>(responseBody.size){"0"}
                         val expArrayVal = Array<String>(responseBody.size){"null"}
                         val expArrayCat = Array<String>(responseBody.size){"null"}
@@ -178,7 +232,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 })
 
-    }
+    }*/
 
     fun deleteExpense(expense_id: Int){
         /**
