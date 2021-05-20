@@ -1,5 +1,6 @@
 package com.example.projekt_zespolowy_ezi.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,12 +19,18 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 
-class UserProfile : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_profile)
+        setContentView(R.layout.activity_sign_up)
+
     }
-    fun newUser2(view: View){
+    private fun enterLogin(){
+        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        val enterLoginIntent = Intent(this, LogInActivity::class.java)
+        startActivity(enterLoginIntent)
+    }
+    fun newUser(view: View){
         /**
          * Funkcja newExpense realizuje zapis podanego przez użytkownika wydatku do bazy danych.
          * Korzysta z handlera bazy danych ExpenseDBHandler
@@ -65,10 +72,10 @@ class UserProfile : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@UserProfile, "Witaj " + newName + "!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@SignUpActivity, "Witaj " + newName + "!", Toast.LENGTH_LONG).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                     } else {
-                        Toast.makeText(this@UserProfile, jsonObjectString, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignUpActivity, jsonObjectString, Toast.LENGTH_SHORT).show()
                         Log.e("RETROFIT_ERROR", response.code().toString())
                     }
                 }
@@ -76,9 +83,9 @@ class UserProfile : AppCompatActivity() {
             name.text.clear()
             email.text.clear()
             pass.text.clear()
+            enterLogin()
         }else{
             Toast.makeText(this, "Wprowadź wszystkie dane!", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

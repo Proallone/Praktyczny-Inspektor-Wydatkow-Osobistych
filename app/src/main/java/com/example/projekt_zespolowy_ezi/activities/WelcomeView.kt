@@ -3,11 +3,10 @@ package com.example.projekt_zespolowy_ezi.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.R
 
@@ -26,16 +25,37 @@ class WelcomeView : AppCompatActivity() {
         setContentView(R.layout.activity_welcome_view)
         val layout : RelativeLayout = findViewById(R.id.activity_welcome_layout)
 
+        val loginButton = findViewById<Button>(R.id.enter_login)
+        val signupButton = findViewById<Button>(R.id.enter_signup)
+        loginButton.setVisibility(View.GONE)
+        signupButton.setVisibility(View.GONE)
         //BackgroundAnimation.animateUI(layout)
         welcomeAnimation()
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
+
+
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            loginButton.setVisibility(View.VISIBLE)
+            signupButton.setVisibility(View.VISIBLE)
         }, 2000) // 3000 is the delayed time in milliseconds.
+        loginButton.setOnClickListener {
+            enterLogin()
+        }
+        signupButton.setOnClickListener {
+            enterSignup()
+        }
+    }
+    fun enterLogin(){
+        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        val startLogin = Intent(this, LogInActivity::class.java)
+        startActivity(startLogin)
+    }
+    fun enterSignup(){
+        /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
+        val startSignup = Intent(this, SignUpActivity::class.java)
+        startActivity(startSignup)
     }
     private fun welcomeAnimation(){
         /*Funkcja odpowiadająca za animację ekranu powitania*/

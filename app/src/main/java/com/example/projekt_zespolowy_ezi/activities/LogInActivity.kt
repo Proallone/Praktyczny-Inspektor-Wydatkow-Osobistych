@@ -1,5 +1,6 @@
 package com.example.projekt_zespolowy_ezi.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,20 +19,17 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 
-class UserProfile : AppCompatActivity() {
+class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_profile)
-    }
-    fun newUser2(view: View){
-        /**
-         * Funkcja newExpense realizuje zapis podanego przez użytkownika wydatku do bazy danych.
-         * Korzysta z handlera bazy danych ExpenseDBHandler
-         */
+        setContentView(R.layout.activity_log_in)
 
-        val name = findViewById<EditText>(R.id.enter_name)
+    }
+    fun Login(view: View){
+
         val email = findViewById<EditText>(R.id.enter_email)
         val pass = findViewById<EditText>(R.id.enter_password)
+        val intent = Intent(this, MainActivity::class.java)
 
         //https://johncodeos.com/how-to-make-post-get-put-and-delete-requests-with-retrofit-using-kotlin/
         val retrofit = Retrofit.Builder().
@@ -40,18 +38,12 @@ class UserProfile : AppCompatActivity() {
 
         val service = retrofit.create(APIRequest::class.java)
 
-        if(name.text.isNotEmpty() && email.text.isNotBlank() && pass.text.isNotEmpty()) {
+        if(email.text.isNotBlank() && pass.text.isNotEmpty()) {
 
-            val newName = name.text.toString()
             val newEmail = email.text.toString()
             val newPass = pass.text.toString()
 
-            /*TIME https://grokonez.com/kotlin/kotlin-get-current-datetime */
-            //val currentDateTime = LocalDateTime.now()
-            //val date = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
-
             val jsonObject = JSONObject()
-            jsonObject.put("name", newName)
             jsonObject.put("email",newEmail)
             jsonObject.put("password",newPass)
 
@@ -61,24 +53,25 @@ class UserProfile : AppCompatActivity() {
             val requestBody = jsonObjectString.toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
 
             CoroutineScope(Dispatchers.IO).launch {
-                val response = service.newUser(requestBody)
+                val response = service.userLogin(requestBody)
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@UserProfile, "Witaj " + newName + "!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LogInActivity, "Zalogowano!", Toast.LENGTH_LONG).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
+                        Log.d("RESPONSE", response.toString())
+                        startActivity(intent)
+                        finish()
                     } else {
-                        Toast.makeText(this@UserProfile, jsonObjectString, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LogInActivity, "Niepoprawne dane", Toast.LENGTH_SHORT).show()
                         Log.e("RETROFIT_ERROR", response.code().toString())
                     }
                 }
             }
-            name.text.clear()
             email.text.clear()
             pass.text.clear()
         }else{
             Toast.makeText(this, "Wprowadź wszystkie dane!", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

@@ -29,7 +29,7 @@ class ExpenseListAdapter(private val context: Activity, private val id: Array<St
         val dateText = rowView.findViewById(R.id.expenseViewDate) as TextView
 
 
-        valueText.text = "Wartość: ${value[position]}zł"
+        valueText.text = "Wartość: ${value[position]}zł".format(" %.2f")
         categoryText.text = "Kategoria: ${category[position]}"
         dateText.text = "Data: ${date[position]}"
         return rowView

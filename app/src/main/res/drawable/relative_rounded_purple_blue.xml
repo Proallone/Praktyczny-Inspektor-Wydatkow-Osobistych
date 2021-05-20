@@ -4,7 +4,7 @@
     android:layout_width="match_parent">
     <item>
         <shape android:shape="rectangle">
-            <gradient android:startColor="@color/PastelleDeepBlue30"/>
+            <gradient android:startColor="@color/PastelleLightBlue"/>
             <gradient android:endColor="@color/PastelleLightBlue30"/>
             <corners android:radius="10dp"/>
         </shape>

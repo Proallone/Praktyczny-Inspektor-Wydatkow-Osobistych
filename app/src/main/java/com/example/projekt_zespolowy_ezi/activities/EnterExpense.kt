@@ -66,13 +66,12 @@ class EnterExpense : AppCompatActivity() {
             val expenseVal = enterExpense.text.toString()
 
             /*TIME https://grokonez.com/kotlin/kotlin-get-current-datetime */
-            val currentDateTime = LocalDateTime.now()
-            val date = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
+            //val currentDateTime = LocalDateTime.now()
+            //val date = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
 
             val jsonObject = JSONObject()
             jsonObject.put("value", expenseVal)
             jsonObject.put("category",selectedCat)
-            jsonObject.put("date",date)
 
             val jsonObjectString = jsonObject.toString()
             Log.d("Object sent", jsonObjectString)

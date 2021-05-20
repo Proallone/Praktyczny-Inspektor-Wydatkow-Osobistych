@@ -157,18 +157,18 @@ class MainActivity : AppCompatActivity() {
                         val expArrayDel = Array<Int>(responseBody.size){0}
                         var sumExp = 0.0F
                         var index = 0
-                        var formatter = DateTimeFormatter.ofPattern("dd-MMMM-yyyy")
 
                         for(e in responseBody){
                             expArrayID[index] = e.id.toString()
                             expArrayVal[index] = e.value
                             expArrayCat[index] = e.category
-                            expArrayDate[index] = e.date.format(formatter)
+                            expArrayDate[index] = e.date
                             expArrayDel[index] = e.deleted
                             sumExp+=expArrayVal[index].toFloat()
                             index++
                         }
-                        expensesSummary.text = sumExp.toString() + "zł"
+                        var sumExpS=String.format("%.2f", sumExp)
+                        expensesSummary.text = sumExpS + "zł"
                         val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
                         expensesList.adapter = expListAdapter
                     }
