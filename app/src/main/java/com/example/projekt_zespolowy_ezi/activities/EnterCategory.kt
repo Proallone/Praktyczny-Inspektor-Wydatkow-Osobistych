@@ -9,19 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.adapters.CategoryListAdapter
-import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
-import com.example.projekt_zespolowy_ezi.api.UserCategoryJSON
 import com.example.projekt_zespolowy_ezi.api.UserCategoryJSONItem
-import com.example.projekt_zespolowy_ezi.api.UserExpenseJSONItem
-import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.constants.URL
-import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
+import com.example.projekt_zespolowy_ezi.constants.LoggedUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.get
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
@@ -30,8 +25,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class EnterCategory : AppCompatActivity() {
@@ -42,7 +35,7 @@ class EnterCategory : AppCompatActivity() {
         val selectedItem: ListView = findViewById(R.id.category_list)
 
         BackgroundAnimation.animateUI(layout)
-        getAllCategories()
+        getUserCategories()
 
 
         selectedItem.setOnItemClickListener { parent, view, position, id ->
@@ -58,7 +51,7 @@ class EnterCategory : AppCompatActivity() {
                         Log.d("RETROFIT SUCCESS, CATEGORY ID" + sel + " REMOVED" ,"SUCCESS")
                 }
                 deleteCategory(sel.toInt())
-                getAllCategories()
+                getUserCategories()
                 true
             })
             popupMenu.show()
@@ -66,7 +59,7 @@ class EnterCategory : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        getAllCategories()
+        getUserCategories()
     }
     fun newCategory(view: View){
         /**
@@ -92,6 +85,7 @@ class EnterCategory : AppCompatActivity() {
 
             val jsonObject = JSONObject()
             jsonObject.put("category", newCat)
+            jsonObject.put("user_id", LoggedUser.userId)
             //jsonObject.put("date",date)
 
             val jsonObjectString = jsonObject.toString()
@@ -104,7 +98,7 @@ class EnterCategory : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        getAllCategories()
+                        getUserCategories()
                         Toast.makeText(this@EnterCategory, "Zapisano kategorię " + newCat, Toast.LENGTH_SHORT).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                     } else {
@@ -146,11 +140,11 @@ class EnterCategory : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@EnterCategory, "Usunięto kategorię id:" + category_id, Toast.LENGTH_SHORT).show()
-                    getAllCategories()
+                    getUserCategories()
                     Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)
                 } else {
                     Toast.makeText(this@EnterCategory, jsonObjectString, Toast.LENGTH_SHORT).show()
-                    getAllCategories()
+                    getUserCategories()
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
@@ -207,6 +201,47 @@ class EnterCategory : AppCompatActivity() {
                 /*
                 Pola poniżej służą do populacji adaptera
                  */
+                val catArrayID = Array<String>(responseBody.size){"0"}
+                val catArrayCat = Array<String>(responseBody.size){"null"}
+                val catArrayDate = Array<String>(responseBody.size){"null"}
+                val catArrayDel = Array<Int>(responseBody.size){0}
+                var index = 0
+
+                for(e in responseBody){
+                    catArrayID[index] = e.id.toString()
+                    catArrayCat[index] = e.category
+                    catArrayDate[index] = e.date
+                    catArrayDel[index] = e.deleted
+                    index++
+                }
+                val catListAdapter = CategoryListAdapter(this@EnterCategory,catArrayID,catArrayCat,catArrayDate,catArrayDel)
+                categoryList.adapter = catListAdapter
+            }
+
+            override fun onFailure(call: Call<List<UserCategoryJSONItem>?>, t: Throwable) {
+                Toast.makeText(this@EnterCategory,"Coś poszło nie tak",Toast.LENGTH_LONG).show()
+            }
+        })
+
+    }
+
+    fun getUserCategories(){
+        val retrofitBuilder = Retrofit.Builder()
+            .baseUrl(URL.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(APIRequest::class.java)
+
+        val categoryList = findViewById<ListView>(R.id.category_list)
+        val response = retrofitBuilder.userCategories(LoggedUser.userId!!)
+
+        response.enqueue(object : Callback<List<UserCategoryJSONItem>?> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<List<UserCategoryJSONItem>?>,
+                response: Response<List<UserCategoryJSONItem>?>
+            ) {
+                val responseBody = response.body()!!
                 val catArrayID = Array<String>(responseBody.size){"0"}
                 val catArrayCat = Array<String>(responseBody.size){"null"}
                 val catArrayDate = Array<String>(responseBody.size){"null"}

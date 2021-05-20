@@ -15,7 +15,7 @@
         android:paddingLeft="15sp"
         android:textColor="@color/white"
         android:paddingTop="3sp"
-        android:text="Category:"
+        android:text="Kategoria:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     <TextView
@@ -24,7 +24,7 @@
         android:textColor="@color/white"
         android:paddingLeft="15sp"
         android:layout_height="wrap_content"
-        android:text="Date"
+        android:text="Data"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 

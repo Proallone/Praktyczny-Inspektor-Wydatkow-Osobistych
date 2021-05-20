@@ -6,17 +6,21 @@
     android:layout_height="match_parent"
     android:padding="15sp"
     style="@style/NewTheme.NoActionBar">
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_centerInParent="true"
         android:visibility="visible">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/logo_and_name"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
 
          <ImageView
              android:id="@+id/WelcomeViewImage"
@@ -66,9 +70,13 @@
             android:text="@string/name_o"
             android:textColor="@color/PastelleLightBlue"
             android:textSize="25sp" />
-        <Space
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160sp"/>
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="top">
         <Button
             android:id="@+id/enter_login"
             android:layout_width="150sp"
@@ -93,5 +101,5 @@
             android:textSize="20sp"
             android:textStyle="bold" />
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
 </RelativeLayout>
