@@ -4,44 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearLayout"
-    android:layout_marginBottom="3dp"
-    android:layout_marginTop="3dp">
-
-    <TextView
-        android:id="@+id/expenseViewId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        android:textStyle="bold"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-
+    android:background="@drawable/relative_rounded_purple_blue">
     <TextView
         android:id="@+id/expenseViewVal"
+        android:paddingLeft="15sp"
+        android:paddingTop="3sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Value:"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-
     <TextView
         android:id="@+id/expenseViewCat"
+        android:paddingLeft="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Category:"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     <TextView
         android:id="@+id/expenseViewDate"
+        android:paddingLeft="15sp"
+        android:paddingBottom="3sp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
-    <TextView
-        android:id="@+id/expenseViewDeleted"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Deleted:"
-        android:textStyle="bold"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
 </LinearLayout>

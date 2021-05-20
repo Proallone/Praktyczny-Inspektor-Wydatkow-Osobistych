@@ -23,17 +23,15 @@ class ExpenseListAdapter(private val context: Activity, private val id: Array<St
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.expense_layout, null, true)
 
-        val idText = rowView.findViewById(R.id.expenseViewId) as TextView
+
         val valueText = rowView.findViewById(R.id.expenseViewVal) as TextView
         val categoryText = rowView.findViewById(R.id.expenseViewCat) as TextView
         val dateText = rowView.findViewById(R.id.expenseViewDate) as TextView
-        val deletedText = rowView.findViewById(R.id.expenseViewDeleted) as TextView
 
-        idText.text = "Id: ${id[position]}"
-        valueText.text = "Value: ${value[position]}"
-        categoryText.text = "Category: ${category[position]}"
-        dateText.text = "Date: ${date[position]}"
-        deletedText.text = "Deleted: ${deleted[position]}"
+
+        valueText.text = "Wartość: ${value[position]}zł".format(" %.2f")
+        categoryText.text = "Kategoria: ${category[position]}"
+        dateText.text = "Data: ${date[position]}"
         return rowView
     }
 }

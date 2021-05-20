@@ -8,4 +8,11 @@
     <color name="PastelleDeepOrange">#f5a52c</color>
     <color name="PastelleLightOrange">#f7b756</color>
     <color name="PastelleWhite">#fdfcfc</color>
+    <color name="PastelleLightBlue30">#672e94fa</color>
+    <color name="PastelleDeepBlue30">#523af5</color>
+    <color name="PastelleLightBlue10">#90add8e6</color>
+    <color name="PastelleLightBlue35">#65add8e6</color>
+    <color name="PastelleLightBlue75">#25add8e6</color>
+
+
 </resources>

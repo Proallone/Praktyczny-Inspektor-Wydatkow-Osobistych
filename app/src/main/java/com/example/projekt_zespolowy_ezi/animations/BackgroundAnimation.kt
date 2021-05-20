@@ -1,8 +1,9 @@
 package com.example.projekt_zespolowy_ezi.animations
 
+import android.graphics.PixelFormat
 import android.graphics.drawable.AnimationDrawable
 import android.view.View
-import android.widget.RelativeLayout
+
 
 /**
  * Objekt pozwalający na wywołanie funkcji animacji tła w dowolnej innej klasie (żeby nie powielać

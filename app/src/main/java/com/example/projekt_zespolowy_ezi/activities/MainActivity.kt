@@ -1,9 +1,15 @@
 package com.example.projekt_zespolowy_ezi.activities
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.app.Activity
 import android.content.Intent
+import android.graphics.PixelFormat
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.APIRequest
@@ -24,6 +30,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.format.DateTimeFormatter
 
 
 /**
@@ -39,13 +46,14 @@ class MainActivity : AppCompatActivity() {
         title = "Projekt PIWO"
         val layout: RelativeLayout = findViewById(R.id.main_layout)
         val selectedItem: ListView = findViewById(R.id.expenses_overview_listview)
-
+        //setStatusBarGradiant(this)
         BackgroundAnimation.animateUI(layout)
         getExpenses()
 
-        val enterExpenseButton = findViewById<Button>(R.id.enter_expense)
-        val enterCategoryButton = findViewById<Button>(R.id.enter_category)
-
+        val enterExpenseButton = findViewById<ImageButton>(R.id.enter_expense)
+        val enterCategoryButton = findViewById<ImageButton>(R.id.enter_category)
+        val enterProfileButton = findViewById<ImageButton>(R.id.user_profile)
+        val enterSettingsButton = findViewById<ImageButton>(R.id.user_options)
 
 
         enterExpenseButton.setOnClickListener {
@@ -53,6 +61,12 @@ class MainActivity : AppCompatActivity() {
         }
         enterCategoryButton.setOnClickListener {
             enterNewCategory()
+        }
+        enterProfileButton.setOnClickListener {
+            enterProfile()
+        }
+        enterSettingsButton.setOnClickListener {
+            enterSettings()
         }
 
 
@@ -75,6 +89,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    fun setStatusBarGradiant(activity: Activity) {
+        val window: Window = activity.window
+        val background = activity.resources.getDrawable(R.drawable.background_gradient_puple_blue_horizontal)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.setStatusBarColor(activity.resources.getColor(android.R.color.transparent))
+        window.setNavigationBarColor(activity.resources.getColor(android.R.color.transparent))
+        window.setBackgroundDrawable(background)
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -90,6 +115,16 @@ class MainActivity : AppCompatActivity() {
         /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
         val enterCategoryIntent = Intent(this, EnterCategory::class.java)
         startActivity(enterCategoryIntent)
+    }
+    private fun enterProfile(){
+        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        val enterProfile= Intent(this, UserProfile::class.java)
+        startActivity(enterProfile)
+    }
+    private fun enterSettings(){
+        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        val enterSettings = Intent(this, Settings::class.java)
+        startActivity(enterSettings)
     }
 
     //https://www.youtube.com/watch?v=-U8Hkec3RWQ&t=310s&ab_channel=CodePalace
@@ -132,7 +167,8 @@ class MainActivity : AppCompatActivity() {
                             sumExp+=expArrayVal[index].toFloat()
                             index++
                         }
-                        expensesSummary.text = sumExp.toString() + "zł"
+                        var sumExpS=String.format("%.2f", sumExp)
+                        expensesSummary.text = sumExpS + "zł"
                         val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
                         expensesList.adapter = expListAdapter
                     }

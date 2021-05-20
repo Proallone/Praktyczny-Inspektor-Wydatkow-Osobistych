@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15sp">
+    android:padding="15sp"
+    style="@style/NewTheme.NoActionBar">
     <RelativeLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
@@ -18,12 +19,13 @@
         android:gravity="center">
          <ImageView
              android:id="@+id/WelcomeViewImage"
-             android:layout_width="170dp"
-             android:layout_height="170dp"
+             android:layout_width="50dp"
+             android:layout_height="50dp"
              android:layout_gravity="center"
-             android:src="@mipmap/logo_transparent_foreground"
-             android:scaleY="1.90"
-             android:scaleX="1.90"/>
+             android:src="@mipmap/logo_transparent_white_foreground"
+             android:scaleY="2.0"
+             android:scaleX="2.0"
+             android:background="@drawable/relative_rounded_purple_blue"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20sp"/>
@@ -34,7 +36,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="@string/name_p"
-            android:textColor="@color/PrimaryRed"
+            android:textColor="@color/PastelleLightBlue"
             android:textSize="25dp" />
         <TextView
             android:id="@+id/name_i"
@@ -43,7 +45,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="@string/name_i"
-            android:textColor="@color/PrimaryRed"
+            android:textColor="@color/PastelleLightOrange"
             android:textSize="25sp" />
         <TextView
             android:id="@+id/name_w"
@@ -52,7 +54,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="@string/name_w"
-            android:textColor="@color/PrimaryRed"
+            android:textColor="@color/PastelleDeepBlue"
             android:textSize="25sp" />
         <TextView
             android:id="@+id/name_o"
@@ -61,8 +63,34 @@
             android:gravity="center"
             android:textStyle="bold"
             android:text="@string/name_o"
-            android:textColor="@color/PrimaryRed"
+            android:textColor="@color/PastelleLightBlue"
             android:textSize="25sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="160sp"/>
+        <Button
+            android:id="@+id/enter_login"
+            android:layout_width="150sp"
+            android:layout_height="60sp"
+            android:layout_gravity="center"
+            android:background="@drawable/relative_rounded_purple_blue"
+            android:text="ZALOGUJ"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20sp"/>
+        <Button
+            android:id="@+id/enter_signup"
+            android:layout_width="150sp"
+            android:layout_height="60sp"
+            android:layout_gravity="center"
+            android:background="@drawable/relative_rounded_purple_blue"
+            android:text="ZAREJESTRUJ"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
 </RelativeLayout>

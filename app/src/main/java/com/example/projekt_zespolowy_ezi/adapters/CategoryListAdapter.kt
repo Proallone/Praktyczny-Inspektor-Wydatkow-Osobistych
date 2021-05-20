@@ -22,15 +22,12 @@ class CategoryListAdapter(private val context: Activity, private val id: Array<S
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.category_layout, null, true)
 
-        val idText = rowView.findViewById(R.id.categoryViewId) as TextView
         val categoryText = rowView.findViewById(R.id.categoryViewCat) as TextView
         val dateText = rowView.findViewById(R.id.categoryViewDate) as TextView
-        val deletedText = rowView.findViewById(R.id.categoryViewDel) as TextView
 
-        idText.text = "Id: ${id[position]}"
         categoryText.text = "Category: ${category[position]}"
         dateText.text = "Date: ${date[position]}"
-        deletedText.text = "Deleted: ${deleted[position]}"
+
         return rowView
     }
 }

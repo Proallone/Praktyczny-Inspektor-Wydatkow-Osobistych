@@ -22,7 +22,7 @@
                 android:layout_height="60sp"
                 android:layout_gravity="center"
                 android:autofillHints="@color/white"
-                android:background="@drawable/relative_rounded"
+                android:background="@drawable/relative_rounded_purple_blue"
                 android:gravity="center"
                 android:hint="Wprowadź kategorię"
                 android:inputType="text"
@@ -32,9 +32,7 @@
                 android:textColorHint="@drawable/input_hint_hide"
                 android:textColorLink="@color/white"
                 android:textStyle="bold" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20sp" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20sp" />
@@ -43,7 +41,7 @@
                 android:layout_width="100sp"
                 android:layout_height="60sp"
                 android:layout_gravity="center"
-                android:background="@drawable/relative_rounded"
+                android:background="@drawable/relative_rounded_purple_blue"
                 android:onClick="newCategory"
                 android:text="@string/save_expense"
                 android:textColor="@color/white"
@@ -53,10 +51,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20sp" />
                 <ListView
                     android:id="@+id/category_list"
                     android:layout_width="match_parent"
-                    android:layout_height="490dp" />
+                    android:layout_height="match_parent"
+                    android:dividerHeight="5sp"
+                    android:divider="@color/Transparent"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
