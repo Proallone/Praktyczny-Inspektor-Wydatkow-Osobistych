@@ -28,9 +28,12 @@ class WelcomeView : AppCompatActivity() {
         val layout : RelativeLayout = findViewById(R.id.activity_welcome_layout)
         val loginButton = findViewById<Button>(R.id.enter_login)
         val signupButton = findViewById<Button>(R.id.enter_signup)
+
         loginButton.setVisibility(View.GONE)
         signupButton.setVisibility(View.GONE)
-        //BackgroundAnimation.animateUI(layout)
+
+        BackgroundAnimation.animateUI(layout)
+
         welcomeAnimation()
 
         // we used the postDelayed(Runnable, time) method

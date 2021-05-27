@@ -25,8 +25,8 @@ class CategoryListAdapter(private val context: Activity, private val id: Array<S
         val categoryText = rowView.findViewById(R.id.categoryViewCat) as TextView
         val dateText = rowView.findViewById(R.id.categoryViewDate) as TextView
 
-        categoryText.text = "Category: ${category[position]}"
-        dateText.text = "Date: ${date[position]}"
+        categoryText.text = "Kategoria: ${category[position]}"
+        dateText.text = "Data: ${date[position]}"
 
         return rowView
     }

@@ -28,6 +28,10 @@ interface APIRequest {
     @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     fun userCategories(@Path("user_id") id: Int): Call<List<UserCategoryJSONItem>>
 
+    @GET("/users/expenses/all")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
+    fun userAllExpenses(@Query("user_id") id :Int, @Query("category") cat : String): Call<List<UserExpenseJSONItem>>
+
     @POST("/expenses")
     @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun addExpense2(@Body requestbody: RequestBody): Response<ResponseBody>

@@ -11,7 +11,7 @@
         android:paddingTop="3sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Value:"
+        android:text="Wartość:"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
@@ -20,7 +20,7 @@
         android:paddingLeft="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category:"
+        android:text="Kategoria:"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
@@ -31,7 +31,7 @@
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date:"
+        android:text="Data:"
         android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 

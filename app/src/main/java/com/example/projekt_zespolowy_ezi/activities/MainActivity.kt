@@ -88,16 +88,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    fun setStatusBarGradiant(activity: Activity) {
-        val window: Window = activity.window
-        val background = activity.resources.getDrawable(R.drawable.background_gradient_puple_blue_horizontal)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = activity.resources.getColor(android.R.color.transparent)
-        window.navigationBarColor = activity.resources.getColor(android.R.color.transparent)
-        window.setBackgroundDrawable(background)
-    }
+//    @SuppressLint("UseCompatLoadingForDrawables")
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    fun setStatusBarGradiant(activity: Activity) {
+//        val window: Window = activity.window
+//        val background = activity.resources.getDrawable(R.drawable.background_gradient_puple_blue_horizontal)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//        window.statusBarColor = activity.resources.getColor(android.R.color.transparent)
+//        window.navigationBarColor = activity.resources.getColor(android.R.color.transparent)
+//        window.setBackgroundDrawable(background)
+//    }
 
 
     override fun onResume() {
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun enterProfile(){
         /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
-        val enterProfile= Intent(this, UserProfile::class.java)
+        val enterProfile= Intent(this, ViewExpenses::class.java)
         startActivity(enterProfile)
     }
     private fun enterSettings(){

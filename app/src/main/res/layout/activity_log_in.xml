@@ -14,9 +14,15 @@
         android:visibility="visible">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerInParent="true">
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@drawable/ic_baseline_profile"
+                android:background="@drawable/relative_rounded_purple_blue"
+                android:layout_gravity="center"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp" />
@@ -36,8 +42,10 @@
                 android:textColorHint="@drawable/input_hint_hide"
                 android:textColorLink="@color/white"
                 android:textStyle="bold"
-                android:drawableEnd="@drawable/ic_baseline_alternate_email_24"
-                android:paddingEnd="10sp"/>
+                android:drawableStart="@drawable/ic_baseline_alternate_email_24"
+                android:drawablePadding="10sp"
+                android:paddingLeft="10sp"
+                android:paddingRight="50sp"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp" />
@@ -45,6 +53,8 @@
                 android:id="@+id/enter_password"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:drawablePadding="10sp"
+                android:paddingLeft="10sp"
                 android:layout_gravity="center"
                 android:autofillHints="@color/white"
                 android:background="@drawable/relative_rounded_purple_blue"
@@ -52,13 +62,15 @@
                 android:hint="Hasło"
                 android:inputType="textPassword"
                 android:singleLine="true"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/white"
                 android:textColorHint="@drawable/input_hint_hide"
                 android:textColorLink="@color/white"
                 android:textStyle="bold"
-                android:drawableEnd="@drawable/ic_baseline_key"
-                android:paddingEnd="10sp"/>
+                android:drawableStart="@drawable/ic_baseline_key"
+                android:paddingEnd="50sp"
+                android:paddingStart="10sp"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp" />

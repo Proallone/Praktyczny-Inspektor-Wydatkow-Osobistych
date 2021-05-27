@@ -10,10 +10,8 @@ import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.R
 import com.example.projekt_zespolowy_ezi.api.UserCategoryJSONItem
-import com.example.projekt_zespolowy_ezi.classes.UserCategory
 import com.example.projekt_zespolowy_ezi.constants.URL
 import com.example.projekt_zespolowy_ezi.constants.LoggedUser
-import com.example.projekt_zespolowy_ezi.database.ExpenseDBHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -151,42 +149,6 @@ class EnterExpense : AppCompatActivity() {
             }
         })
 
-    }
-
-    fun categorySpinnerPop(){
-        /**
-         * Funkcja realizująca wypełnienie listy dostepnych kategorii przy użyciu zdefiniowanych przez użytkownika
-         * kategorii wydatków
-         */
-        val categorySpinner = findViewById<Spinner>(R.id.expense_category_spinner)
-        val dbHandler = ExpenseDBHandler(this, null, null, 1)
-        val categories: List<UserCategory> = dbHandler.readAllCategory()
-        val ArrayID = Array(categories.size){0}
-        val ArrayCat = Array(categories.size){"null"}
-        var index = 0
-
-        for(c in categories){
-            ArrayID[index] = c.id
-            ArrayCat[index] = c.category.toString()
-            index++
-        }
-
-        if (categorySpinner != null){
-            val adapter = ArrayAdapter(this, R.layout.spinner_selected_layout, ArrayCat)
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout)
-            categorySpinner.adapter = adapter
-        }
-
-        categorySpinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                selectedCat = ArrayCat[position]
-                val selected = ArrayID[position]
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
     }
 }
 

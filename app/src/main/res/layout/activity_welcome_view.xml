@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15sp"
-    style="@style/NewTheme.NoActionBar">
+    style="@style/NewTheme.NoActionBar"
+    android:background="@drawable/background_gradient_list">
     <LinearLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
