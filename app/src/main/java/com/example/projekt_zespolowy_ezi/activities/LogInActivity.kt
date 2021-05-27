@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -79,9 +78,13 @@ class LogInActivity : AppCompatActivity() {
                         val responseBody = response.body()?.string()
                         val responseJSON = JSONObject(responseBody)
                         val usrID = responseJSON.getString("id")
+                        val usrEmail = responseJSON.getString("email")
+                        val usrRegDate = responseJSON.getString("registration_date")
                         val usrName = responseJSON.getString("name")
                         LoggedUser.userId = usrID.toInt()
                         LoggedUser.userName = usrName.toString()
+                        LoggedUser.userEmail = usrEmail.toString()
+                        LoggedUser.userRegDate=usrRegDate.toString()
                         //Toast.makeText(this@LogInActivity, usrID, Toast.LENGTH_LONG).show()
                         Toast.makeText(this@LogInActivity, "Zalogowano!", Toast.LENGTH_LONG).show()
                         Log.d("RETROFIT SUCCESS, SENT REQUEST", jsonObjectString)

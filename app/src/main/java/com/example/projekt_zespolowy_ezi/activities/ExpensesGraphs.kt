@@ -15,7 +15,6 @@ import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -82,16 +81,14 @@ class ExpensesGraphs : AppCompatActivity() {
                 expensesSummary.text = sumExpS + "zł"
                 val barDataSet = BarDataSet(expenses, "Wydatki")
                 barDataSet.valueTextSize = 12f
-                //barDataSet.color = R.color.GoblinGreen2
                 val data = BarData(barDataSet)
                 barDataSet.setColor(getResources().getColor(R.color.PastelleDeepOrange)); //resolved color
-
-                //barGraph.setDescription("Set Bar Chart Description")
                 data.setBarWidth(0.9f) // set custom bar width
                 barGraph.setData(data)
                 barGraph.xAxis.isEnabled = false
                 barGraph.axisLeft.isEnabled = false
                 barGraph.axisRight.isEnabled = false
+                barGraph.setScaleEnabled(false)
                 val description: Description = Description()
                 description.setText("Wydatki użytkownika " + LoggedUser.userName)
                 description.textSize = 15f

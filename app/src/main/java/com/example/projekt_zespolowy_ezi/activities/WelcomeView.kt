@@ -36,14 +36,10 @@ class WelcomeView : AppCompatActivity() {
 
         welcomeAnimation()
 
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
-
-
         Handler().postDelayed({
             loginButton.setVisibility(View.VISIBLE)
             signupButton.setVisibility(View.VISIBLE)
-        }, 2000) // 3000 is the delayed time in milliseconds.
+        }, 2000) // 2000 opoźnienie wyświetlenia przycisków.
         loginButton.setOnClickListener {
             enterLogin()
         }
@@ -52,20 +48,18 @@ class WelcomeView : AppCompatActivity() {
         }
     }
     fun enterLogin(){
-        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        /*Funkcja odpowiadająca za przejście do activity logowania*/
         val startLogin = Intent(this, LogInActivity::class.java)
         startActivity(startLogin)
     }
     fun enterSignup(){
-        /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
+        /*Funkcja odpowiadająca za przejście do activity rejestracji*/
         val startSignup = Intent(this, SignUpActivity::class.java)
         startActivity(startSignup)
     }
     private fun welcomeAnimation(){
         /*Funkcja odpowiadająca za animację ekranu powitania*/
 
-        // This is used to hide the status bar and make
-        // the splash screen as a full screen activity.
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN

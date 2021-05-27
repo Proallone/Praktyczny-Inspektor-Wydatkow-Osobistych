@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.projekt_zespolowy_ezi.APIRequest
 import com.example.projekt_zespolowy_ezi.R
-import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.constants.URL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

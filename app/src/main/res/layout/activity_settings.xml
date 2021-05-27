@@ -1,9 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Settings">
+    android:background="@drawable/background_gradient_list"
+    android:orientation="vertical"
+    android:padding="15sp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100sp"
+                        android:layout_height="100sp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/relative_rounded_purple_blue"
+                        android:src="@drawable/ic_baseline_profile" />
+
+                    <Space
+                        android:layout_width="10sp"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/PastelleLightBlue10"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="33sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="110sp"
+                                android:layout_height="33sp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Imię:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textview_user_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="33sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="110sp"
+                                android:layout_height="33sp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="E-mail:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textview_user_email"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="33sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:text="Data rejestracji:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textview_user_registration"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/PastelleLightBlue10"
+                        android:gravity="center"
+                        android:text="Zmień hasło" />
+
+                    <Space
+                        android:layout_width="10sp"
+                        android:layout_height="match_parent" />
+
+                    <ImageButton
+                        android:layout_width="30sp"
+                        android:layout_height="30sp"
+                        android:background="@drawable/relative_rounded_purple_blue"
+                        android:src="@drawable/ic_baseline_key"
+                        android:tooltipText="Zmień hasło" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100sp"
+                        android:layout_height="match_parent"
+                        android:background="@color/PastelleLightBlue10"
+                        android:gravity="center"
+                        android:text="Usuń konto" />
+
+                    <Space
+                        android:layout_width="10sp"
+                        android:layout_height="match_parent" />
+
+                    <ImageButton
+                        android:id="@+id/delete_account_button"
+                        android:layout_width="30sp"
+                        android:layout_height="30sp"
+                        android:background="@drawable/relative_rounded_purple_blue"
+                        android:src="@drawable/ic_baseline_delete_forever"
+                        android:tooltipText="Usuń konto" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

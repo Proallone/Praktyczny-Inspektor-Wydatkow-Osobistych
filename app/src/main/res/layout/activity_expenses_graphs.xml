@@ -49,16 +49,15 @@
                         android:layout_gravity="left"
                         android:gravity="center"/>
                     </LinearLayout>
-
                 <LinearLayout
                     android:padding="10sp"
                     android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/main_graph"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                            <com.github.mikephil.charting.charts.BarChart
+                                android:id="@+id/main_graph"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

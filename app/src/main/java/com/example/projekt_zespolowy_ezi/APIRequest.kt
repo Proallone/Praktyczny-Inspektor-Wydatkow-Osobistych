@@ -55,6 +55,10 @@ interface APIRequest {
     @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun newUser(@Body requestbody: RequestBody): Response<ResponseBody>
 
+    @PATCH("/users")
+    @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
+    suspend fun deleteUser(@Body requestbody: RequestBody):Response<ResponseBody>
+
     @PATCH("/users/id/{id}")
     @Headers("Accept:application/json","Content-Type:application/json;charset=UTF-8")
     suspend fun updateUser(@Path("id") id: Int, @Body requestbody: RequestBody):Response<ResponseBody>
