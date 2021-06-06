@@ -114,75 +114,94 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10sp" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="500sp"
+                android:gravity="center"
+                android:text="PLACEHOLDER"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="100sp"
-                        android:layout_height="match_parent"
-                        android:background="@color/PastelleLightBlue10"
-                        android:gravity="center"
-                        android:text="Zmień hasło" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                    <Space
-                        android:layout_width="10sp"
-                        android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="100sp"
+                            android:layout_height="match_parent"
+                            android:background="@color/PastelleLightBlue10" android:gravity="center"
+                            android:text="Zmień hasło" />
 
-                    <ImageButton
-                        android:layout_width="30sp"
-                        android:layout_height="30sp"
-                        android:background="@drawable/relative_rounded_purple_blue"
-                        android:src="@drawable/ic_baseline_key"
-                        android:tooltipText="Zmień hasło" />
+                        <Space
+                            android:layout_width="10sp"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:id="@+id/change_password_button"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+
+                            android:background="@drawable/relative_rounded_purple_blue"
+                            android:src="@drawable/ic_baseline_key"
+                            android:tooltipText="Zmień hasło" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="100sp"
-                        android:layout_height="match_parent"
-                        android:background="@color/PastelleLightBlue10"
-                        android:gravity="center"
-                        android:text="Usuń konto" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                    <Space
-                        android:layout_width="10sp"
-                        android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_width="100sp"
+                            android:layout_height="match_parent"
+                            android:background="@color/PastelleLightBlue10"
+                            android:gravity="center"
+                            android:text="Usuń konto" />
 
-                    <ImageButton
-                        android:id="@+id/delete_account_button"
-                        android:layout_width="30sp"
-                        android:layout_height="30sp"
-                        android:background="@drawable/relative_rounded_purple_blue"
-                        android:src="@drawable/ic_baseline_delete_forever"
-                        android:tooltipText="Usuń konto" />
+                        <Space
+                            android:layout_width="10sp"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:id="@+id/delete_account_button"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:background="@drawable/relative_rounded_purple_blue"
+                            android:src="@drawable/ic_baseline_delete_forever"
+                            android:tooltipText="Usuń konto" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+        </LinearLayout>
+
     </RelativeLayout>
 </RelativeLayout>
