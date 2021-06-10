@@ -1,15 +1,9 @@
 package com.example.projekt_zespolowy_ezi.activities
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Intent
-import android.graphics.PixelFormat
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Window
-import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.APIRequest
@@ -18,6 +12,7 @@ import com.example.projekt_zespolowy_ezi.adapters.ExpenseListAdapter
 import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
 import com.example.projekt_zespolowy_ezi.api.UserExpenseJSONItem
 import com.example.projekt_zespolowy_ezi.constants.URL
+import com.example.projekt_zespolowy_ezi.constants.LoggedUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +25,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.format.DateTimeFormatter
 
 
 /**
@@ -43,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         /*Funkcja wykonywana w momencie pierwszego wywołania activity */
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "Projekt PIWO"
+        title = "Witaj " + LoggedUser.userName + "!"
         val layout: RelativeLayout = findViewById(R.id.main_layout)
         val selectedItem: ListView = findViewById(R.id.expenses_overview_listview)
         //setStatusBarGradiant(this)
@@ -70,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        selectedItem.setOnItemClickListener { parent, view, position, id ->
+        selectedItem.setOnItemClickListener { _, _, position, _ ->
             val sel: String = selectedItem.getItemAtPosition(position) as String
 
             //Popup menu
@@ -89,16 +83,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    fun setStatusBarGradiant(activity: Activity) {
-        val window: Window = activity.window
-        val background = activity.resources.getDrawable(R.drawable.background_gradient_puple_blue_horizontal)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(activity.resources.getColor(android.R.color.transparent))
-        window.setNavigationBarColor(activity.resources.getColor(android.R.color.transparent))
-        window.setBackgroundDrawable(background)
-    }
+//    @SuppressLint("UseCompatLoadingForDrawables")
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    fun setStatusBarGradiant(activity: Activity) {
+//        val window: Window = activity.window
+//        val background = activity.resources.getDrawable(R.drawable.background_gradient_puple_blue_horizontal)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//        window.statusBarColor = activity.resources.getColor(android.R.color.transparent)
+//        window.navigationBarColor = activity.resources.getColor(android.R.color.transparent)
+//        window.setBackgroundDrawable(background)
+//    }
 
 
     override fun onResume() {
@@ -118,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun enterProfile(){
         /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
-        val enterProfile= Intent(this, UserProfile::class.java)
+        val enterProfile= Intent(this, ViewExpenses::class.java)
         startActivity(enterProfile)
     }
     private fun enterSettings(){
@@ -129,6 +123,7 @@ class MainActivity : AppCompatActivity() {
 
     //https://www.youtube.com/watch?v=-U8Hkec3RWQ&t=310s&ab_channel=CodePalace
 
+
     private fun getExpenses(){
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(URL.BASE_URL)
@@ -136,50 +131,50 @@ class MainActivity : AppCompatActivity() {
             .build()
             .create(APIRequest::class.java)
 
-                val expensesList = findViewById<ListView>(R.id.expenses_overview_listview)
-                val expensesSummary = findViewById<TextView>(R.id.summary_value)
-                val response = retrofitBuilder.getAllExpenses()
+        val expensesList = findViewById<ListView>(R.id.expenses_overview_listview)
+        val expensesSummary = findViewById<TextView>(R.id.summary_value)
+        val response = retrofitBuilder.userExpenses(LoggedUser.userId!!)
 
-                response.enqueue(object : Callback<List<UserExpenseJSONItem>?> {
-                    @SuppressLint("SetTextI18n")
-                    override fun onResponse(
-                        call: Call<List<UserExpenseJSONItem>?>,
-                        response: Response<List<UserExpenseJSONItem>?>
-                    ) {
-                        val responseBody = response.body()!!
-                        /*
-                        Pola poniżej służą do populacji adaptera
-                         */
-                        val expArrayID = Array<String>(responseBody.size){"0"}
-                        val expArrayVal = Array<String>(responseBody.size){"null"}
-                        val expArrayCat = Array<String>(responseBody.size){"null"}
-                        val expArrayDate = Array<String>(responseBody.size){"null"}
-                        val expArrayDel = Array<Int>(responseBody.size){0}
-                        var sumExp = 0.0F
-                        var index = 0
+        response.enqueue(object : Callback<List<UserExpenseJSONItem>?> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                call: Call<List<UserExpenseJSONItem>?>,
+                response: Response<List<UserExpenseJSONItem>?>
+            ) {
+                val responseBody = response.body()!!
+                /*
+                Pola poniżej służą do populacji adaptera
+                 */
+                val expArrayID = Array<String>(responseBody.size){"0"}
+                val expArrayVal = Array<String>(responseBody.size){"null"}
+                val expArrayCat = Array<String>(responseBody.size){"null"}
+                val expArrayDate = Array<String>(responseBody.size){"null"}
+                val expArrayDel = Array<Int>(responseBody.size){0}
+                var sumExp = 0.0F
+                var index = 0
+                var expF = ""
+                for(e in responseBody){
+                    expArrayID[index] = e.id.toString()
+                    expF=String.format("%.2f", e.value.toFloat())
+                    expArrayVal[index] = expF.toString()
+                    expArrayCat[index] = e.category
+                    expArrayDate[index] = e.date
+                    expArrayDel[index] = e.deleted
+                    sumExp+=expArrayVal[index].toFloat()
+                    index++
+                }
+                val sumExpS=String.format("%.2f", sumExp)
+                expensesSummary.text = sumExpS + "zł"
+                val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
+                expensesList.adapter = expListAdapter
+            }
 
-                        for(e in responseBody){
-                            expArrayID[index] = e.id.toString()
-                            expArrayVal[index] = e.value
-                            expArrayCat[index] = e.category
-                            expArrayDate[index] = e.date
-                            expArrayDel[index] = e.deleted
-                            sumExp+=expArrayVal[index].toFloat()
-                            index++
-                        }
-                        var sumExpS=String.format("%.2f", sumExp)
-                        expensesSummary.text = sumExpS + "zł"
-                        val expListAdapter = ExpenseListAdapter(this@MainActivity,expArrayID,expArrayVal,expArrayCat,expArrayDate,expArrayDel)
-                        expensesList.adapter = expListAdapter
-                    }
-
-                    override fun onFailure(call: Call<List<UserExpenseJSONItem>?>, t: Throwable) {
-                        Toast.makeText(this@MainActivity,"Coś poszło nie tak",Toast.LENGTH_LONG).show()
-                    }
-                })
+            override fun onFailure(call: Call<List<UserExpenseJSONItem>?>, t: Throwable) {
+                Toast.makeText(this@MainActivity,"Coś poszło nie tak",Toast.LENGTH_LONG).show()
+            }
+        })
 
     }
-
     fun deleteExpense(expense_id: Int){
         /**
          * Funkcja odpowiedzialna za usunięcie wybranego wydatku z serwerowej bazy danych

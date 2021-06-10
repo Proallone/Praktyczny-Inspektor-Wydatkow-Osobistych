@@ -76,6 +76,7 @@
         </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/menu_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -113,7 +114,7 @@
                     android:background="@drawable/relative_rounded_purple_blue"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
-                    android:src="@drawable/ic_baseline_profile"
+                    android:src="@drawable/ic_baseline_bar_chart"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/enter_category"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projekt_zespolowy_ezi.R
+import com.example.projekt_zespolowy_ezi.animations.BackgroundAnimation
+
 
 //REF https://www.geeksforgeeks.org/how-to-create-an-animated-splash-screen-in-android/
 
@@ -24,22 +26,20 @@ class WelcomeView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_view)
         val layout : RelativeLayout = findViewById(R.id.activity_welcome_layout)
-
         val loginButton = findViewById<Button>(R.id.enter_login)
         val signupButton = findViewById<Button>(R.id.enter_signup)
+
         loginButton.setVisibility(View.GONE)
         signupButton.setVisibility(View.GONE)
-        //BackgroundAnimation.animateUI(layout)
+
+        BackgroundAnimation.animateUI(layout)
+
         welcomeAnimation()
-
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
-
 
         Handler().postDelayed({
             loginButton.setVisibility(View.VISIBLE)
             signupButton.setVisibility(View.VISIBLE)
-        }, 2000) // 3000 is the delayed time in milliseconds.
+        }, 2000) // 2000 opoźnienie wyświetlenia przycisków.
         loginButton.setOnClickListener {
             enterLogin()
         }
@@ -48,20 +48,18 @@ class WelcomeView : AppCompatActivity() {
         }
     }
     fun enterLogin(){
-        /*Funkcja odpowiadająca za przejście do activity wprowadzenia wydatków*/
+        /*Funkcja odpowiadająca za przejście do activity logowania*/
         val startLogin = Intent(this, LogInActivity::class.java)
         startActivity(startLogin)
     }
     fun enterSignup(){
-        /*Funkcja odpowiadająca za przejście do activity przewidywania wydatków*/
+        /*Funkcja odpowiadająca za przejście do activity rejestracji*/
         val startSignup = Intent(this, SignUpActivity::class.java)
         startActivity(startSignup)
     }
     private fun welcomeAnimation(){
         /*Funkcja odpowiadająca za animację ekranu powitania*/
 
-        // This is used to hide the status bar and make
-        // the splash screen as a full screen activity.
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN

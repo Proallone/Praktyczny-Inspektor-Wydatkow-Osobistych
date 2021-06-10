@@ -6,5 +6,6 @@
         android:angle="180"
         android:startColor="@color/PastelleLightBlue30"
         android:endColor="@color/PastelleDeepBlue30"
+        android:centerColor="@color/PastelleLightBlue"
         android:type="linear" />
 </shape>
